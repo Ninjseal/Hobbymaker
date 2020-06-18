@@ -1,0 +1,20 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: railsuser
+  password: s3creT
+  host: localhost
+  port: 3306
+
+development:
+  <<: *default
+  database: hobbymaker_development
+
+test:
+  <<: *default
+  database: hobbymaker_test
+
+production:
+  <<: *default
+  database: hobbymaker_production
