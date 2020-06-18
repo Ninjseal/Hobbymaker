@@ -1,0 +1,20 @@
+<%= content_tag(:nav, class: "navbar navbar-expand-lg navbar-dark fixed-top bg-dark") do %>
+  <%= link_to("Hobbymaker", root_path, class: "navbar-brand") %>
+  <%= content_tag(:button, class: "navbar-toggler", type: "button", data: { toggle: "collapse", target: "#navbarCollapse" },
+                  'aria-controls': "navbarCollapse", 'aria-expanded': "false", 'aria-label': "Toggle navigation") do %>
+    <%= content_tag(:span, '', class: "navbar-toggler-icon") %>
+  <% end -%>
+  <%= content_tag(:div, class: "collapse navbar-collapse", id: "navbarCollapse") do %>
+    <%= content_tag(:ul, class: "navbar-nav mr-auto") do %>
+      <%= content_tag(:li, class: nav_item_class(controller_inquiry.home?)) do %>
+        <%= link_to(root_path, class: "nav-link") do %>
+          <%= ion_icon 'home', text: content_tag(:span, "Home") %>
+        <% end -%>
+      <% end -%>
+    <% end -%>
+    <%= content_tag(:form, class: "form-inline mt-2 mt-md-0") do %>
+      <%= text_field(:q, :search_query, class: "form-control mr-sm-2", placeholder: "Search", 'aria-label': "Search") %>
+      <%= content_tag(:button, "Search", class: "btn btn-outline-success my-2 my-sm-0", type: "submit") %>
+    <% end -%>
+  <% end -%>
+<% end -%>
