@@ -13,10 +13,10 @@
     <%= render partial: "shared/header" %>
     <%= content_tag(:main, class: "container", role: "main") do %>
       <% if notice %>
-        <%= content_tag(:p, notice, class: "notice") %>
+        <%= content_tag(:div, notice, class: "alert alert-primary", role: "alert") %>
       <% end -%>
       <% if alert %>
-        <%= content_tag(:p, alert, class: "alert") %>
+        <%= content_tag(:div, alert, class: "alert alert-danger", role: "alert") %>
       <% end -%>
       <%= yield %>
     <% end -%>

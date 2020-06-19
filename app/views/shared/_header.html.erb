@@ -16,14 +16,14 @@
       <%= text_field(:q, :search_query, class: "form-control mr-sm-2", placeholder: "Search", 'aria-label': "Search") %>
       <%= content_tag(:button, "Search", class: "btn btn-outline-success my-2 my-sm-0", type: "submit") %>
     <% end -%>
-    <%= content_tag(:span, class: "ml-2 navbar-text") do %>
+    <%= content_tag(:span, class: "ml-1 ml-lg-3 navbar-text") do %>
       <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
-        <%= link_to('Edit profile', edit_user_registration_path, class: "navbar-link") %> |
+        Welcome, <strong class="faded-white"><%= current_user.name %></strong>
+        <%= link_to('Edit profile', edit_user_registration_path, class: "navbar-link #{nav_item_class(controller_inquiry.registrations? && action_inquiry.edit?)}") %> |
         <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "navbar-link") %>
       <% else %>
-        <%= link_to('Sign up', new_user_registration_path, class: "navbar-link") %> |
-        <%= link_to('Login', new_user_session_path, class: "navbar-link") %>
+        <%= link_to('Sign up', new_user_registration_path, class: "navbar-link #{nav_item_class(controller_inquiry.registrations? && action_inquiry.new?)}") %> |
+        <%= link_to('Login', new_user_session_path, class: "navbar-link #{nav_item_class(controller_inquiry.sessions?)}") %>
       <% end -%>
     <% end -%>
   <% end -%>
