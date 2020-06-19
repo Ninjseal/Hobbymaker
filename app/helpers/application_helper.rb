@@ -6,5 +6,4 @@ module ApplicationHelper
   def nav_item_class(active = false)
     "nav-item#{active ? ' active' : ''}"
   end
-
 end

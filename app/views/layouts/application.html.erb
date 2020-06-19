@@ -9,11 +9,15 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body cz-shortcut-listen="true">
     <%= render partial: "shared/header" %>
-    <%= content_tag(:main, class: "container") do %>
-      <%= content_tag(:p, notice, class: "notice") %>
-      <%= content_tag(:p, alert, class: "alert") %>
+    <%= content_tag(:main, class: "container", role: "main") do %>
+      <% if notice %>
+        <%= content_tag(:p, notice, class: "notice") %>
+      <% end -%>
+      <% if alert %>
+        <%= content_tag(:p, alert, class: "alert") %>
+      <% end -%>
       <%= yield %>
     <% end -%>
   </body>

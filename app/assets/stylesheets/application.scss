@@ -1,2 +1,17 @@
 @import "bootstrap";
 @import "ionicons";
+
+body {
+  padding-top: 4.5rem;
+}
+
+.navbar-text a.navbar-link {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  padding: 0.5rem 0;
+}
+
+.navbar-text a.navbar-link:hover {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
