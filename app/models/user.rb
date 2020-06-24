@@ -7,7 +7,9 @@ class User < ApplicationRecord
 
   has_many :comments
   has_many :posts
+  has_many :messages
   has_and_belongs_to_many :interests
+  has_and_belongs_to_many :group_chats
 
   has_many :followed_follows, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :followed_follows, source: :follower
@@ -20,4 +22,9 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role :user if self.roles.blank?
   end
+
+  def direct_chats
+    TwoUsersChat.where(["user1_id = :user_id OR user2_id = :user_id", { user_id: self.id }])
+  end
+
 end

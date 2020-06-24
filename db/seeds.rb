@@ -8,6 +8,9 @@ u_admin.save
 u = User.create(email: 'cristina.badic12@gmail.com', password: 'Kikirika98',
   name: 'Cristina Badic', gender: 'Female', country: 'Romania', city: 'Bucharest', birthdate: Date.new(1998, 5, 12))
 
+# Create Follows
+Follow.create(follower_id: u.id, following_id: u_admin.id)
+
 # Create interests
 i_art = Interest.create(name: 'Art')
 i_comedy = Interest.create(name: 'Comedy')
@@ -43,3 +46,15 @@ reply2 = Comment.create(content: 'Second Reply', created_by: u.id, post_id: post
 comment2 = Comment.create(content: 'Commenting....', created_by: u_admin.id, post_id: post3.id)
 reply3 = Comment.create(content: 'Replying....', created_by: u.id, post_id: post3.id, parent_id: comment2.id)
 reply4 = Comment.create(content: 'Replying to reply', created_by: u_admin.id, post_id: post3.id, parent_id: reply3.id)
+
+# Create Chat and Messages
+chat1 = TwoUsersChat.create(user1_id: u.id, user2_id: u_admin.id)
+m1 = Message.new(content: 'Hello', user_id: u.id)
+m1.chat = chat1
+m1.save
+
+gr1 = GroupChat.create(name: 'Group Test')
+gr1.users << u << u_admin
+m2 = Message.new(content: 'Yo!', user_id: u_admin.id)
+m2.chat = gr1
+m2.save
