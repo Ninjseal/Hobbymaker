@@ -58,3 +58,22 @@ gr1.users << u << u_admin
 m2 = Message.new(content: 'Yo!', user_id: u_admin.id)
 m2.chat = gr1
 m2.save
+
+# Create Events
+e1 = Event.create(name: 'Test', description: 'Just testing', location: 'Online', start_date: DateTime.now, end_date: DateTime.now)
+e2 = Event.create(name: 'Evento', description: 'Beep', location: 'Online', start_date: DateTime.now, end_date: DateTime.now)
+
+e1.organizers << u_admin
+e1.organizers << u
+
+e2.organizers << u
+e2.participants << u_admin
+
+# Favorites
+f1 = Favorite.new(user_id: u_admin.id)
+f1.favorite_item = e2
+f1.save
+
+f2 = Favorite.new(user_id: u.id)
+f2.favorite_item = post1
+f2.save

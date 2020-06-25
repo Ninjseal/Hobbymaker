@@ -11,6 +11,13 @@ class User < ApplicationRecord
   has_and_belongs_to_many :interests
   has_and_belongs_to_many :group_chats
 
+  has_and_belongs_to_many :organized_events, join_table: :organizations, association_foreign_key: :event_id, class_name: 'Event'
+  has_and_belongs_to_many :joined_events, join_table: :participations, association_foreign_key: :event_id, class_name: 'Event'
+
+  has_many :favored_favorites, foreign_key: :user_id, class_name: 'Favorite'
+  has_many :favorite_events, through: :favored_favorites, source: :favorite_item, source_type: 'Event'
+  has_many :favorite_posts, through: :favored_favorites, source: :favorite_item, source_type: 'Post'
+
   has_many :followed_follows, foreign_key: :following_id, class_name: 'Follow'
   has_many :followers, through: :followed_follows, source: :follower
 
