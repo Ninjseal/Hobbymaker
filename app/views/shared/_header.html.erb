@@ -18,8 +18,8 @@
     <% end -%>
     <%= content_tag(:span, class: "ml-1 ml-lg-3 navbar-text") do %>
       <% if user_signed_in? %>
-        Welcome, <strong class="faded-white"><%= current_user.name %></strong>
-        <%= link_to('Edit profile', edit_user_registration_path, class: "navbar-link #{nav_item_class(controller_inquiry.registrations? && action_inquiry.edit?)}") %> |
+        <strong class="faded-white"><%= current_user.name %></strong>
+        <%= image_tag current_user.profile_photo, class: 'rounded-circle', style: 'width:40px; height:40px;' if current_user.profile_photo.attached? %> |
         <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "navbar-link") %>
       <% else %>
         <%= link_to('Sign up', new_user_registration_path, class: "navbar-link #{nav_item_class(controller_inquiry.registrations? && action_inquiry.new?)}") %> |
