@@ -5,12 +5,12 @@
     <%= content_tag(:fieldset) do %>
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, class: "w-100", autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, class: "w-100", autofocus: true, required: true %>
       </div>
 
       <div class="field">
         <%= f.label :password %><br />
-        <%= f.password_field :password, class: "w-100", autocomplete: "current-password" %>
+        <%= f.password_field :password, class: "w-100", required: true %>
       </div>
 
       <% if devise_mapping.rememberable? %>

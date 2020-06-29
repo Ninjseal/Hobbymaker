@@ -5,26 +5,43 @@
     <%= render "devise/shared/error_messages", resource: resource %>
     <%= content_tag(:fieldset) do %>
       <div class="field">
-        <%= f.label :name %><br />
-        <%= f.text_field :name, class: "w-100", autofocus: true, autocomplete: "name" %>
-      </div>
-
-      <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, class: "w-100", autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, class: "w-100", required: true, autofocus: true %>
       </div>
 
       <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, class: "w-100", autocomplete: "new-password" %>
+        <%= f.label :password %><br />
+        <%= f.password_field :password, class: "w-100", required: true, minlength: @minimum_password_length %>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, class: "w-100", autocomplete: "new-password" %>
+        <%= f.label :name %><br />
+        <%= f.text_field :name, class: "w-100", required: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :gender %><br />
+        <%= f.select :gender, User.genders.keys.map { |key, val| [key.humanize, key] }, include_blank: true, class: "w-100" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :birthdate %><br />
+        <%= f.date_select :birthdate, class: "w-100", prompt: true, start_year: Date.today.year - 120, end_year: Date.today.year %>
+      </div>
+
+      <div class="field">
+        <%= f.label :country %><br />
+        <%= f.text_field :country, class: "w-100" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :city %><br />
+        <%= f.text_field :city, class: "w-100" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :about %><br />
+        <%= f.text_area :about, class: "w-100" %>
       </div>
 
       <div class="actions mt-3">

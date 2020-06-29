@@ -26,6 +26,8 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  enum gender: { male: 0, female: 1, other: 2 }
+
   def assign_default_role
     self.add_role :user if self.roles.blank?
   end
