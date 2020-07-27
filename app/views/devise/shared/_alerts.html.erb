@@ -1,0 +1,16 @@
+<% if notice %>
+  <%= content_tag(:div, class: "alert alert-success custom-alert", role: "alert") do %>
+     <%= notice %>
+     <%= button_tag(type: "button", class: "close", data: { 'dismiss': 'alert' }, 'aria-label': 'Close') do %>
+       <%= ion_icon('android-close', 'aria-hidden': 'true') %>
+     <% end %>
+  <% end %>
+<% end -%>
+<% if alert %>
+  <%= content_tag(:div, class: "alert alert-danger custom-alert", role: "alert") do %>
+    <%= alert %>
+    <%= button_tag(type: "button", class: "close", data: { 'dismiss': 'alert' }, 'aria-label': 'Close') do %>
+      <%= ion_icon('android-close', 'aria-hidden': 'true') %>
+    <% end %>
+  <% end %>
+<% end -%>

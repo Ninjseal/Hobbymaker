@@ -1,16 +1,21 @@
+<%= render partial: "devise/shared/alerts" %>
 <%= content_tag(:div, class: "content-box") do %>
-  <h2>Forgot your password?</h2>
+  <%= content_tag(:h2, 'Forgot your password?', class: "themed-text") %>
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
     <%= content_tag(:fieldset) do %>
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, class: "w-100", autofocus: true, required: true %>
+        <% if resource.errors.full_messages_for(:email).present? %>
+          <%= f.email_field :email, class: "w-100 form-control is-invalid", required: true %>
+          <%= content_tag(:div, resource.errors.full_messages_for(:email).join(".\n"), class: "invalid-feedback") %>
+        <% else %>
+          <%= f.email_field :email, class: "w-100", required: true %>
+        <% end %>
       </div>
 
       <div class="actions mt-3">
-        <%= f.submit "Send me reset password instructions" %>
+        <%= f.submit "Send me reset password instructions", class: "submit-button-lg" %>
       </div>
     <% end -%>
   <% end %>

@@ -1,22 +1,41 @@
+<%= render partial: "devise/shared/alerts" %>
 <%= content_tag(:div, class: "content-box") do %>
-  <h2>Sign up</h2>
+  <%= content_tag(:h2, 'Sign up', class: "themed-text") %>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
     <%= content_tag(:fieldset) do %>
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, class: "w-100", required: true, autofocus: true %>
+        <% if resource.errors.full_messages_for(:email).present? %>
+          <%= f.email_field :email, class: "w-100 form-control is-invalid", required: true %>
+          <%= content_tag(:div, resource.errors.full_messages_for(:email).join(".\n"), class: "invalid-feedback") %>
+        <% elsif resource.errors.any? %>
+          <%= f.email_field :email, class: "w-100 form-control is-valid", required: true %>
+        <% else %>
+          <%= f.email_field :email, class: "w-100", required: true %>
+        <% end %>
       </div>
 
       <div class="field">
         <%= f.label :password %><br />
-        <%= f.password_field :password, class: "w-100", required: true, minlength: @minimum_password_length %>
+        <% if resource.errors.full_messages_for(:password).present? %>
+          <%= f.password_field :password, class: "w-100 form-control is-invalid", required: true, minlength: @minimum_password_length %>
+          <%= content_tag(:div, resource.errors.full_messages_for(:password).join(".\n"), class: "invalid-feedback") %>
+        <% else %>
+          <%= f.password_field :password, class: "w-100", required: true, minlength: @minimum_password_length %>
+        <% end %>
       </div>
 
       <div class="field">
         <%= f.label :name %><br />
-        <%= f.text_field :name, class: "w-100", required: true %>
+        <% if resource.errors.full_messages_for(:name).present? %>
+          <%= f.text_field :name, class: "w-100 form-control is-invalid", required: true %>
+          <%= content_tag(:div, resource.errors.full_messages_for(:name).join(".\n"), class: "invalid-feedback") %>
+        <% elsif resource.errors.any? %>
+          <%= f.text_field :name, class: "w-100 form-control is-valid", required: true %>
+        <% else %>
+          <%= f.text_field :name, class: "w-100", required: true %>
+        <% end %>
       </div>
 
       <div class="field">
@@ -26,7 +45,7 @@
 
       <div class="field">
         <%= f.label :birthdate %><br />
-        <%= f.date_select :birthdate, class: "w-100", prompt: true, start_year: Date.today.year - 120, end_year: Date.today.year %>
+        <%= f.date_field :birthdate, min: Date.new(Date.today.year-120, 1, 1), max: Date.today, class: "w-100" %>
       </div>
 
       <div class="field">

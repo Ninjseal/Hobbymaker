@@ -27,6 +27,8 @@ class User < ApplicationRecord
   before_create :set_default_profile_photo
   after_create :assign_default_role
 
+  validate :password_regex
+
   enum gender: { male: 0, female: 1, other: 2 }
 
   has_one_attached :profile_photo
@@ -43,6 +45,11 @@ class User < ApplicationRecord
 
     def set_default_profile_photo
       self.profile_photo.attach(io: File.open(Rails.root.join('app/assets/images/default-profile-photo.png')), filename: 'default-profile-photo.png', content_type: 'image/png')
+    end
+
+    def password_regex
+      return if self.password.blank? || self.password =~ /\A.(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\W]).{7,}\Z/
+      errors.add :password, 'should contain at least one lowercase character, one uppercase character, one digit and one special character.'
     end
 
 end

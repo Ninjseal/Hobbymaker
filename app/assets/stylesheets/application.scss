@@ -5,6 +5,11 @@
 body {
   padding-top: 4.5rem;
   padding-bottom: 2rem;
+  background-color: #f9f9f9;
+}
+
+.themed-text {
+  color: #ED755A !important;
 }
 
 .navbar-brand {
@@ -35,7 +40,7 @@ span.navbar-text {
 }
 
 .content-box {
-  border: 1px solid #d0d0c8;
+  border: 2px solid #d0d0c8;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0px 1px 1px #d0d0c8;
@@ -53,6 +58,10 @@ span.navbar-text {
   text-align: left;
 }
 
+.content-box a {
+  color: #CF6B54;
+}
+
 ul.error-list {
   border: none;
   width: 300px;
@@ -62,13 +71,53 @@ ul.error-list {
 }
 
 .submit-button-lg {
+  background-color: #ED755A;
+  color: #ffffff;
   font-size: 16px;
   padding: 8px 16px;
   border-radius: 2px;
   border: 1px solid #D6D0C4;
   text-decoration: none;
+  outline: 0 !important;
+}
+
+.submit-button-lg:focus,
+.submit-button-lg:active {
+  border-color: rgba(245, 165, 117, 0.7);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5);
+  outline: 0 none !important;
 }
 
 div.field {
   margin-bottom: 1em;
+}
+
+.field input,
+.field textarea,
+.field select {
+  border: 1px solid #D6D0C4;
+  border-radius: 4px;
+  color: #495057;
+}
+
+.field input:not([type='checkbox']):focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: rgba(245, 165, 117, 0.7);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5);
+  outline: 0 none !important;
+}
+
+.custom-alert {
+  position: relative;
+  width: 600px;
+  margin: 0 auto 1rem auto;
+}
+
+.close {
+  float: none;
+  position: absolute;
+  right: 10px;
+  top: 45%;
+  margin-top: -10px;
 }

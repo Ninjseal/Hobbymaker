@@ -13,12 +13,10 @@
   <body cz-shortcut-listen="true">
     <%= render partial: "shared/header" %>
     <%= content_tag(:main, class: "container", role: "main") do %>
-      <% if notice %>
-        <%= content_tag(:div, notice, class: "alert alert-primary", role: "alert") %>
-      <% end -%>
-      <% if alert %>
-        <%= content_tag(:div, alert, class: "alert alert-danger", role: "alert") %>
-      <% end -%>
+      <div id="hello">
+        <blog-post title="Hello"></blog-post>
+        <app :message="<%= "Hello".to_json %>"></app>
+      </div>
       <%= yield %>
     <% end -%>
   </body>

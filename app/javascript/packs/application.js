@@ -16,3 +16,22 @@ require("jquery")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+import TurbolinksAdapter from 'vue-turbolinks'
+import Vue from 'vue/dist/vue.esm'
+import App from '../components/app.vue'
+
+Vue.use(TurbolinksAdapter)
+
+Vue.component('app', App)
+
+Vue.component('blog-post', {
+  props: ['title'],
+  template: '<h3>{{ title }}</h3>'
+})
+
+document.addEventListener('turbolinks:load', () => {
+  const app = new Vue({
+    el: '#hello',
+  })
+})
