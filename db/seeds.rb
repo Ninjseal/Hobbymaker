@@ -1,12 +1,12 @@
 # Create admin user
 u_admin = User.new(email: 'borza.marius98@gmail.com', password: 'marius10',
-  name: 'Marius Borza', gender: User.genders['male'], country: 'Romania', city: 'Bucharest', birthdate: Date.new(1998, 12, 16))
+  name: 'Marius Borza', gender: User.genders['male'], country_id: 'Romania', birthdate: Date.new(1998, 12, 16))
 u_admin.add_role :admin
 u_admin.save
 
 # Create normal users
 u = User.create(email: 'cristina.badic12@gmail.com', password: 'Kikirika98',
-  name: 'Cristina Badic', gender: User.genders['female'], country: 'Romania', city: 'Bucharest', birthdate: Date.new(1998, 5, 12))
+  name: 'Cristina Badic', gender: User.genders['female'], country_id: , birthdate: Date.new(1998, 5, 12))
 
 # Create Follows
 Follow.create(follower_id: u.id, following_id: u_admin.id)

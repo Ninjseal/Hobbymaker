@@ -4,7 +4,12 @@
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= content_tag(:fieldset) do %>
-      <div class="field">
+      <%= content_tag(:div, class: "helper-text") do %>
+        <%= content_tag :span, "Fields marked with an asterisk (" %>
+        <%= content_tag :span, "*", style: "color: red;" %>
+        <%= content_tag :span, ") are required." %>
+      <% end %>
+      <div class="field required">
         <%= f.label :email %><br />
         <% if resource.errors.full_messages_for(:email).present? %>
           <%= f.email_field :email, class: "w-100 form-control is-invalid", required: true %>
@@ -16,7 +21,7 @@
         <% end %>
       </div>
 
-      <div class="field">
+      <div class="field required">
         <%= f.label :password %><br />
         <% if resource.errors.full_messages_for(:password).present? %>
           <%= f.password_field :password, class: "w-100 form-control is-invalid", required: true, minlength: @minimum_password_length %>
@@ -26,7 +31,7 @@
         <% end %>
       </div>
 
-      <div class="field">
+      <div class="field required">
         <%= f.label :name %><br />
         <% if resource.errors.full_messages_for(:name).present? %>
           <%= f.text_field :name, class: "w-100 form-control is-invalid", required: true %>
@@ -40,7 +45,7 @@
 
       <div class="field">
         <%= f.label :gender %><br />
-        <%= f.select :gender, User.genders.keys.map { |key, val| [key.humanize, key] }, include_blank: true, class: "w-100" %>
+        <%= f.select :gender, User.genders.keys.map { |key, val| [key.humanize, key] }, { include_blank: true }, { class: "custom-select" } %>
       </div>
 
       <div class="field">
@@ -48,14 +53,14 @@
         <%= f.date_field :birthdate, min: Date.new(Date.today.year-120, 1, 1), max: Date.today, class: "w-100" %>
       </div>
 
-      <div class="field">
+      <div class="field required">
         <%= f.label :country %><br />
-        <%= f.text_field :country, class: "w-100" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :city %><br />
-        <%= f.text_field :city, class: "w-100" %>
+        <% if resource.errors.full_messages_for(:country).present? %>
+          <%= f.collection_select :country_id, Country.order_by_name, :id, :name, { prompt: "Select country" }, { class: "custom-select is-invalid" } %>
+          <%= content_tag(:div, "Please select country", class: "invalid-feedback") %>
+        <% else %>
+          <%= f.collection_select :country_id, Country.order_by_name, :id, :name, { prompt: "Select country" }, { class: "custom-select" } %>
+        <% end %>
       </div>
 
       <div class="field">

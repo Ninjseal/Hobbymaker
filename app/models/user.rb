@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :following_follows, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_follows, source: :following
 
+  belongs_to :country
+
   before_create :set_default_profile_photo
   after_create :assign_default_role
 

@@ -9,6 +9,8 @@ gem 'pundit'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-ionicons-rails'
+gem 'pry'
+gem 'progress_bar'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
