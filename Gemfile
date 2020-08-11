@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'font-ionicons-rails'
 gem 'pry'
 gem 'progress_bar'
+gem 'delayed_job_active_record'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
@@ -33,6 +34,9 @@ gem 'redis', '~> 4.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+
+# Preview emails in browser
+gem "letter_opener", :group => :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

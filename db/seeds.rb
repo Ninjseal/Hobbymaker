@@ -1,12 +1,16 @@
+# Import world_data.csv - Countries, Regions and Cities
+Rake::Task['csv_imports:world_data'].invoke
+romania = Country.where(name: "Romania")
+
 # Create admin user
-u_admin = User.new(email: 'borza.marius98@gmail.com', password: 'marius10',
-  name: 'Marius Borza', gender: User.genders['male'], country_id: 'Romania', birthdate: Date.new(1998, 12, 16))
+u_admin = User.new(email: 'borza.marius98@gmail.com', password: 'marius10', confirmed_at: DateTime.now,
+  name: 'Marius Borza', gender: User.genders['male'], country_id: romania.id, birthdate: Date.new(1998, 12, 16))
 u_admin.add_role :admin
 u_admin.save
 
 # Create normal users
-u = User.create(email: 'cristina.badic12@gmail.com', password: 'Kikirika98',
-  name: 'Cristina Badic', gender: User.genders['female'], country_id: , birthdate: Date.new(1998, 5, 12))
+u = User.create(email: 'cristina.badic12@gmail.com', password: 'Kikirika98', confirmed_at: DateTime.now,
+  name: 'Cristina Badic', gender: User.genders['female'], country_id: romania.id, birthdate: Date.new(1998, 5, 12))
 
 # Create Follows
 Follow.create(follower_id: u.id, following_id: u_admin.id)
