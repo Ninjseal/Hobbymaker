@@ -17,7 +17,7 @@
         <% elsif resource.errors.any? %>
           <%= f.email_field :email, class: "w-100 form-control is-valid", required: true %>
         <% else %>
-          <%= f.email_field :email, class: "w-100", required: true %>
+          <%= f.email_field :email, class: "w-100 form-control", required: true %>
         <% end %>
       </div>
 
@@ -27,7 +27,7 @@
           <%= f.password_field :password, class: "w-100 form-control is-invalid", required: true, minlength: @minimum_password_length %>
           <%= content_tag(:div, resource.errors.full_messages_for(:password).join(".\n"), class: "invalid-feedback") %>
         <% else %>
-          <%= f.password_field :password, class: "w-100", required: true, minlength: @minimum_password_length %>
+          <%= f.password_field :password, class: "w-100 form-control", required: true, minlength: @minimum_password_length %>
         <% end %>
       </div>
 
@@ -39,7 +39,7 @@
         <% elsif resource.errors.any? %>
           <%= f.text_field :name, class: "w-100 form-control is-valid", required: true %>
         <% else %>
-          <%= f.text_field :name, class: "w-100", required: true %>
+          <%= f.text_field :name, class: "w-100 form-control", required: true %>
         <% end %>
       </div>
 
@@ -50,7 +50,7 @@
 
       <div class="field">
         <%= f.label :birthdate %><br />
-        <%= f.date_field :birthdate, min: Date.new(Date.today.year-120, 1, 1), max: Date.today, class: "w-100" %>
+        <%= f.date_field :birthdate, min: Date.new(Date.today.year-120, 1, 1), max: Date.today, class: "w-100 form-control" %>
       </div>
 
       <div class="field required">
@@ -65,7 +65,7 @@
 
       <div class="field">
         <%= f.label :about %><br />
-        <%= f.text_area :about, class: "w-100" %>
+        <%= f.text_area :about, class: "w-100 form-control" %>
       </div>
 
       <div class="actions mt-3">
