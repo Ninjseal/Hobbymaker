@@ -11,6 +11,11 @@
           <%= ion_icon 'home', text: content_tag(:span, "Home") %>
         <% end -%>
       <% end -%>
+      <%= content_tag(:li, class: nav_item_class(controller_inquiry.events?)) do %>
+        <%= link_to(events_path, class: "nav-link") do %>
+          <%= ion_icon 'android-calendar', text: content_tag(:span, "Events") %>
+        <% end -%>
+      <% end -%>
     <% end -%>
     <%= content_tag(:form, class: "form-inline mt-2 mt-md-0") do %>
       <%= text_field(:q, :search_query, class: "form-control mr-sm-2", placeholder: "Search", 'aria-label': "Search") %>
@@ -20,7 +25,7 @@
       <% if user_signed_in? %>
         <%= link_to edit_user_registration_path, class: "navbar-link" do %>
           <%= content_tag(:strong, "#{current_user.name}", class: "faded-white align-middle") %>
-          <%= image_tag current_user.profile_photo, class: 'rounded-circle', style: 'width:35px; height:35px;' if current_user.profile_photo.attached? %>
+          <%= image_tag current_user.profile_photo.url, class: 'rounded-circle', style: 'width:35px; height:35px;'%>
         <% end -%>
         <%= content_tag(:span, " | ") %>
         <%= link_to(destroy_user_session_path, method: :delete, class: "navbar-link align-middle") do %>

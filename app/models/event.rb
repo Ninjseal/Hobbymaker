@@ -5,4 +5,14 @@ class Event < ApplicationRecord
   has_many :favored_by, through: :favored_by_favorites, source: :user
 
   belongs_to :city, optional: true
+
+  has_attached_file :thumbnail, default_url: :default_thumbnail_url
+  validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
+
+  private
+
+    def default_thumbnail_url
+      "default-event-thumb.png"
+    end
+
 end

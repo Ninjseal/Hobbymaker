@@ -53,7 +53,7 @@
         <%= f.date_field :birthdate, min: Date.new(Date.today.year-120, 1, 1), max: Date.today, class: "w-100 form-control" %>
       </div>
 
-      <div class="field required">
+      <div class="field">
         <%= f.label :country %><br />
         <% if resource.errors.full_messages_for(:country).present? %>
           <%= f.collection_select :country_id, Country.order_by_name, :id, :name, { prompt: "Select country" }, { class: "custom-select is-invalid" } %>

@@ -31,7 +31,19 @@ Vue.component('blog-post', {
 })
 
 document.addEventListener('turbolinks:load', () => {
-  const app = new Vue({
-    el: '#hello',
-  })
-})
+  $(".icon-heart").click(function() {
+    var id = parseInt($(this).attr("data-id"));
+    $.ajax({ url: `/events/${id}/add_to_favorites`,
+      type: 'POST',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    });
+    if ($(this).hasClass("far")) {
+      $(this).addClass("fas");
+      $(this).removeClass("far");
+    } else if ($(this).hasClass("fas")) {
+      $(this).addClass("far");
+      $(this).removeClass("fas");
+    }
+    $(this).toggleClass("favorited");
+  });
+});

@@ -1,0 +1,10 @@
+<%= content_tag(:div, class: "py-4") do %>
+  <%= content_tag(:div, "All Events", class: "event-list-title") %>
+  <%= content_tag(:div, class: "event-list-wrapper") do %>
+    <%= content_tag(:ul, class: "event-list-ul") do %>
+      <%= content_tag(:div) do %>
+        <%= render(partial: "event", collection: @events) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

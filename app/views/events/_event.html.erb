@@ -1,0 +1,31 @@
+<%= content_tag(:li, class: "event-item", style: "overflow: hidden;") do %>
+  <%= content_tag(:div, class: "btn-like-event") do %>
+    <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
+      <% if is_favored?(event) %>
+        <%= icon("fas", "heart", class: "icon-heart favorited", "data-id": event.id) %>
+      <% else %>
+        <%= icon("far", "heart", class: "icon-heart", "data-id": event.id) %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= link_to(root_path, target: "_blank") do %>
+    <%= content_tag(:div, class: "thumb") do %>
+      <%= image_tag(event.thumbnail.url, class: "card-img-top", alt: "Banner") %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "meta") do %>
+    <%= content_tag(:div, class: "meta-left") do %>
+      <%= content_tag(:span, get_month(event.start_date), class: "up-month") %>
+      <%= content_tag(:span, get_event_day(event), class: "up-day") %>
+    <% end %>
+    <%= content_tag(:div, class: "meta-right") do %>
+      <%= content_tag(:div, format_date(event.start_date), class: "date") %>
+      <%= content_tag(:div, class: "title") do %>
+        <%= link_to(root_path, title: event.name, target: "_blank") do %>
+          <%= content_tag(:h3, event.name) %>
+        <% end %>
+      <% end %>
+      <%= content_tag(:span, get_location(event), class: "location") %>
+    <% end %>
+  <% end %>
+<% end %>

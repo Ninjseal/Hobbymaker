@@ -1,15 +1,15 @@
 # Import world_data.csv - Countries, Regions and Cities
 Rake::Task['csv_imports:world_data'].invoke
-romania = Country.where(name: "Romania")
+romania = Country.where(name: "Romania").first
 
 # Create admin user
-u_admin = User.new(email: 'borza.marius98@gmail.com', password: 'marius10', confirmed_at: DateTime.now,
+u_admin = User.new(email: 'borza.marius98@gmail.com', password: 'Marius10!', confirmed_at: DateTime.now,
   name: 'Marius Borza', gender: User.genders['male'], country_id: romania.id, birthdate: Date.new(1998, 12, 16))
 u_admin.add_role :admin
 u_admin.save
 
 # Create normal users
-u = User.create(email: 'cristina.badic12@gmail.com', password: 'Kikirika98', confirmed_at: DateTime.now,
+u = User.create(email: 'cristina.badic12@gmail.com', password: 'Marius10!', confirmed_at: DateTime.now,
   name: 'Cristina Badic', gender: User.genders['female'], country_id: romania.id, birthdate: Date.new(1998, 5, 12))
 
 # Create Follows
@@ -17,6 +17,7 @@ Follow.create(follower_id: u.id, following_id: u_admin.id)
 
 # Create interests
 i_art = Interest.create(name: 'Art')
+i_business = Interest.create(name: 'Business')
 i_comedy = Interest.create(name: 'Comedy')
 i_crafts = Interest.create(name: 'Crafts')
 i_sports = Interest.create(name: 'Sports')
@@ -26,6 +27,7 @@ i_theater = Interest.create(name: 'Theater')
 i_food = Interest.create(name: 'Food')
 i_games = Interest.create(name: 'Games')
 i_health = Interest.create(name: 'Health')
+i_languages = Interest.create(name: 'Languages')
 i_literature = Interest.create(name: 'Literature')
 i_gardening = Interest.create(name: 'Gardening')
 i_shopping = Interest.create(name: 'Shopping')

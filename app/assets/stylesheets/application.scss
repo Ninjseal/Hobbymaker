@@ -1,6 +1,9 @@
 @import "bootstrap";
 @import "ionicons";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
 
 body {
   padding-top: 4.5rem;
@@ -133,4 +136,27 @@ div.field {
   right: 10px;
   top: 45%;
   margin-top: -10px;
+}
+
+.gradient {
+  background-image: image-url("divider-left");
+  background-position: 0px 0.75em;
+  background-repeat: no-repeat;
+  font-size: 16px;
+  color: #999;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.gradient span {
+  display: block;
+  background-image: image-url("divider-right");
+  background-position: 169px 0.75em;
+  background-repeat: no-repeat;
+}
+
+button.btn-google {
+  font-size: 16px;
+  line-height: 2;
+  margin: 1rem auto;
 }

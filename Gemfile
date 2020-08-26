@@ -9,9 +9,17 @@ gem 'pundit'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-ionicons-rails'
-gem 'pry'
+gem 'pry-rails'
 gem 'progress_bar'
 gem 'delayed_job_active_record'
+gem "paperclip", "~> 6.0.0"
+gem 'activeadmin'
+gem 'activeadmin_addons'
+gem 'font-awesome-sass'
+
+# Omniauth - Google API
+gem 'omniauth-google-oauth2'
+gem 'google-api-client'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'

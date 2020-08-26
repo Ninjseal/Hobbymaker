@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, :omniauth_providers => [:google_oauth2]
 
   has_many :comments
   has_many :posts
@@ -24,19 +25,39 @@ class User < ApplicationRecord
   has_many :following_follows, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_follows, source: :following
 
-  belongs_to :country
+  belongs_to :country, optional: true
 
-  before_create :set_default_profile_photo
   after_create :assign_default_role
 
   validate :password_regex
 
   enum gender: { male: 0, female: 1, other: 2 }
 
-  has_one_attached :profile_photo
+  has_attached_file :profile_photo, default_url: :default_profile_photo_url
+  validates_attachment_content_type :profile_photo, content_type: /\Aimage\/.*\z/
+
+  def self.from_omniauth(auth)
+    user = where(email: auth.info.email).first
+    if user.present?
+      if user.uid.nil?
+        if user.confirmed?
+          user.update(uid: auth.uid)
+        else
+          user.update(uid: auth.uid, password: Devise.friendly_token[0, 20], confirmed_at: DateTime.now)
+        end
+      end
+    else
+      user = create(uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], name: auth.info.name, confirmed_at: DateTime.now)
+    end
+    user.reload
+  end
 
   def direct_chats
     TwoUsersChat.where(["user1_id = :user_id OR user2_id = :user_id", { user_id: self.id }])
+  end
+
+  def token_expired?
+    self.token_expires && (self.expires_at.nil? || self.expires_at < Time.now)
   end
 
   private
@@ -45,12 +66,12 @@ class User < ApplicationRecord
       self.add_role :user if self.roles.blank?
     end
 
-    def set_default_profile_photo
-      self.profile_photo.attach(io: File.open(Rails.root.join('app/assets/images/default-profile-photo.png')), filename: 'default-profile-photo.png', content_type: 'image/png')
+    def default_profile_photo_url
+      "default-profile-photo-#{self.gender.presence || 'other'}.png"
     end
 
     def password_regex
-      return if self.password.blank? || self.password =~ /\A.(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\W]).{7,}\Z/
+      return if self.password.blank? || self.password =~ /\A.(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\W|_]).{7,}\Z/
       errors.add :password, 'should contain at least one lowercase character, one uppercase character, one digit and one special character.'
     end
 
