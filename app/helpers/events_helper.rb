@@ -5,7 +5,11 @@ module EventsHelper
   end
 
   def get_location(event)
-    event.location # Based on type of Event, get location e.g. Online or City
+    if event.is_online?
+      event.kind.titleize
+    else
+      event.location
+    end
   end
 
   def get_month(date)
@@ -22,7 +26,7 @@ module EventsHelper
 
   def is_favored?(event)
     return false if current_user.nil?
-    Favorite.exists?(user_id: current_user.id, favorite_item_id: event.id, favorite_item_type: "event")
+    event.is_favored_by?(current_user)
   end
 
 end

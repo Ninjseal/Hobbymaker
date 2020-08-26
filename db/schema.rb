@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_154755) do
+ActiveRecord::Schema.define(version: 2020_08_26_121556) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_154755) do
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
-    t.string "location", null: false
+    t.string "location"
     t.datetime "start_date", null: false
     t.datetime "end_date", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -86,6 +86,10 @@ ActiveRecord::Schema.define(version: 2020_08_20_154755) do
     t.string "thumbnail_content_type"
     t.integer "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
+    t.integer "kind", null: false
+    t.index ["end_date"], name: "index_events_on_end_date"
+    t.index ["name"], name: "index_events_on_name"
+    t.index ["start_date"], name: "index_events_on_start_date"
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

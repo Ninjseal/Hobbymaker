@@ -66,8 +66,8 @@ m2.chat = gr1
 m2.save
 
 # Create Events
-e1 = Event.create(name: 'Test', description: 'Just testing', location: 'Online', start_date: DateTime.now, end_date: DateTime.now)
-e2 = Event.create(name: 'Evento', description: 'Beep', location: 'Online', start_date: DateTime.now, end_date: DateTime.now)
+e1 = Event.create(name: 'Test', description: 'Just testing', kind: Event.kinds['online'], start_date: DateTime.now, end_date: DateTime.now)
+e2 = Event.create(name: 'Evento', description: 'Beep', kind: Event.kinds['online'], start_date: DateTime.now, end_date: DateTime.now)
 
 e1.organizers << u_admin
 e1.organizers << u
