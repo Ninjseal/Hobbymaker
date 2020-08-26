@@ -8,13 +8,19 @@ class Event < ApplicationRecord
 
   enum kind: { online: 0, venue: 1 }
 
-  validate :venue_has_location_city
+  validate :venue_has_location_and_city
 
   has_attached_file :thumbnail, default_url: :default_thumbnail_url
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
 
   scope :online_events, -> { where(kind: Event.kinds['online']) }
   scope :venue_events, -> { where(kind: Event.kinds['venue']) }
+  scope :today, -> { where(start_date: Date.today.all_day) }
+  scope :this_weekend, -> { where(start_date: Date.today.sunday.yesterday.beginning_of_day..Date.today.sunday) }
+  scope :weekly, -> { where(start_date: Date.today.beginning_of_day..6.days.from_now.end_of_day) }
+  scope :upcoming, -> { where("start_date > ?", Time.current) }
+  scope :in_progress, -> { where("start_date < :current_time AND end_date > :current_time", current_time: Time.current) }
+  scope :past_events, -> { where("end_date < ?", Time.current) }
 
   def is_online?
     self.kind == 'online'
@@ -30,7 +36,7 @@ class Event < ApplicationRecord
       "default-event-thumb.png"
     end
 
-    def venue_has_location_city
+    def venue_has_location_and_city
       if self.kind == 'venue'
         self.errors.add(:location, "cannot be blank") if self.location.nil?
         self.errors.add(:city, "cannot be blank") if self.city_id.nil?
