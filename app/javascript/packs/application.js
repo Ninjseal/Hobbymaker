@@ -31,19 +31,49 @@ Vue.component('blog-post', {
 })
 
 document.addEventListener('turbolinks:load', () => {
-  $(".icon-heart").click(function() {
-    var id = parseInt($(this).attr("data-id"));
-    $.ajax({ url: `/events/${id}/add_to_favorites`,
-      type: 'POST',
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-    });
-    if ($(this).hasClass("far")) {
-      $(this).addClass("fas");
-      $(this).removeClass("far");
-    } else if ($(this).hasClass("fas")) {
-      $(this).addClass("far");
-      $(this).removeClass("fas");
-    }
-    $(this).toggleClass("favorited");
-  });
+  $(".icon-heart").click(favorite_event_toggle);
+  $(".btn-follow").click(follow_user);
+  $(".btn-unfollow").click(unfollow_user);
 });
+
+function favorite_event_toggle() {
+  var id = parseInt($(this).attr("data-id"));
+  $.ajax({ url: `/events/${id}/add_to_favorites`,
+    type: 'POST',
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+  });
+  if ($(this).hasClass("far")) {
+    $(this).addClass("fas");
+    $(this).removeClass("far");
+  } else if ($(this).hasClass("fas")) {
+    $(this).addClass("far");
+    $(this).removeClass("fas");
+  }
+  $(this).toggleClass("favorited");
+}
+
+function follow_user() {
+  var id = parseInt($(this).attr("data-id"));
+  $.ajax({ url: `/follow_user/${id}`,
+    type: 'POST',
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    success: function(data, status, xhr) {
+      var id = $(data).attr("data-id");
+      $(`button.btn-follow[data-id='${id}']`).replaceWith(data);
+      $(`button.btn-unfollow[data-id='${id}']`).click(unfollow_user);
+    }
+  });
+}
+
+function unfollow_user() {
+  var id = parseInt($(this).attr("data-id"));
+  $.ajax({ url: `/unfollow_user/${id}`,
+    type: 'POST',
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    success: function(data, status, xhr) {
+      var id = $(data).attr("data-id");
+      $(`button.btn-unfollow[data-id='${id}']`).replaceWith(data);
+      $(`button.btn-follow[data-id='${id}']`).click(follow_user);
+    }
+  });
+}

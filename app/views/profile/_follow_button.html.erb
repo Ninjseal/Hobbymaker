@@ -1,0 +1,5 @@
+<% if btn_type == "follow" %>
+  <%= button_tag("Follow", type: 'button', class: "btn btn-follow btn-sm btn-outline-primary", "data-id": user_id) %>
+<% elsif btn_type == "unfollow" %>
+  <%= button_tag("Unfollow", type: 'button', class: "btn btn-unfollow btn-sm btn-outline-danger", "data-id": user_id) %>
+<% end %>

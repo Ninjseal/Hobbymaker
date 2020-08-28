@@ -60,6 +60,10 @@ class User < ApplicationRecord
     self.token_expires && (self.expires_at.nil? || self.expires_at < Time.now)
   end
 
+  def is_followed_by?(user)
+    Follow.exists?(follower_id: user.id, following_id: self.id)
+  end
+
   private
 
     def assign_default_role

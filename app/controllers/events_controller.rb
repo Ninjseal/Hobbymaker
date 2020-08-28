@@ -1,22 +1,20 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :load_record, only: [:add_to_favorites, :add_to_google_calendar]
+  before_action :load_record, only: [:show, :add_to_favorites, :add_to_google_calendar]
 
   def index
     @events = Event.all
   end
 
   def show
-
   end
 
   def new
-
+    @event = Event.new
   end
 
   def create
-
   end
 
   def edit

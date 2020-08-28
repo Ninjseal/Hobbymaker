@@ -8,7 +8,7 @@
       <% end %>
     <% end %>
   <% end %>
-  <%= link_to(root_path, target: "_blank") do %>
+  <%= link_to(event_path(event), target: "_blank") do %>
     <%= content_tag(:div, class: "thumb") do %>
       <%= image_tag(event.thumbnail.url, class: "card-img-top", alt: "Banner") %>
     <% end %>
@@ -21,7 +21,7 @@
     <%= content_tag(:div, class: "meta-right") do %>
       <%= content_tag(:div, format_date(event.start_date), class: "date") %>
       <%= content_tag(:div, class: "title") do %>
-        <%= link_to(root_path, title: event.name, target: "_blank") do %>
+        <%= link_to(event_path(event), title: event.name, target: "_blank") do %>
           <%= content_tag(:h3, event.name) %>
         <% end %>
       <% end %>

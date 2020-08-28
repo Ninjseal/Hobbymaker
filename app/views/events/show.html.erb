@@ -1,0 +1,20 @@
+<%= content_tag(:div, class: "event-body") do %>
+  <%= content_tag(:div, class: "event-header") do %>
+    <%= content_tag(:div, class: "event-img-container") do %>
+      <%= image_tag(@event.thumbnail.url, class: "event-img") %>
+    <% end %>
+    <%= content_tag(:div, class: "event-details-container") do %>
+      <%= content_tag(:div, class: "event-details") do %>
+        <%= content_tag(:div, class: "event-date") do %>
+
+        <% end %>
+        <%= content_tag(:div, class: "event-title") do %>
+          <%= content_tag(:h1, @event.name) %>
+          <%= get_organizers(@event) %>
+        <% end %>
+        <%= content_tag(:div, class: "event-location") do %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
