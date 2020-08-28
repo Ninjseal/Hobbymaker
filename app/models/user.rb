@@ -30,6 +30,7 @@ class User < ApplicationRecord
   after_create :assign_default_role
 
   validate :password_regex
+  validates_presence_of :name
 
   enum gender: { male: 0, female: 1, other: 2 }
 

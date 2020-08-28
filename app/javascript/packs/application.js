@@ -38,8 +38,7 @@ document.addEventListener('turbolinks:load', () => {
 
 function favorite_event_toggle() {
   var id = parseInt($(this).attr("data-id"));
-  $.ajax({ url: `/events/${id}/add_to_favorites`,
-    type: 'POST',
+  $.post({ url: `/events/${id}/add_to_favorites`,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
   });
   if ($(this).hasClass("far")) {
@@ -54,8 +53,7 @@ function favorite_event_toggle() {
 
 function follow_user() {
   var id = parseInt($(this).attr("data-id"));
-  $.ajax({ url: `/follow_user/${id}`,
-    type: 'POST',
+  $.post({ url: `/follow_user/${id}`,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
     success: function(data, status, xhr) {
       var id = $(data).attr("data-id");
@@ -67,8 +65,7 @@ function follow_user() {
 
 function unfollow_user() {
   var id = parseInt($(this).attr("data-id"));
-  $.ajax({ url: `/unfollow_user/${id}`,
-    type: 'POST',
+  $.post({ url: `/unfollow_user/${id}`,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
     success: function(data, status, xhr) {
       var id = $(data).attr("data-id");

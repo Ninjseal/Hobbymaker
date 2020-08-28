@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_162809) do
     t.string "favorite_item_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id", "favorite_item_id"], name: "index_favorites_on_user_id_and_favorite_item_id", unique: true
+    t.index ["user_id", "favorite_item_id", "favorite_item_type"], name: "index_favorites", unique: true
   end
 
   create_table "follows", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

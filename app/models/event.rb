@@ -9,6 +9,7 @@ class Event < ApplicationRecord
   enum kind: { online: 0, venue: 1 }
 
   validate :venue_has_location_and_city
+  validates_presence_of :name, :description, :kind, :start_date, :end_date
 
   has_attached_file :thumbnail, default_url: :default_thumbnail_url
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
@@ -38,8 +39,8 @@ class Event < ApplicationRecord
 
     def venue_has_location_and_city
       if self.kind == 'venue'
-        self.errors.add(:location, "cannot be blank") if self.location.nil?
-        self.errors.add(:city, "cannot be blank") if self.city_id.nil?
+        self.errors.add(:location, "can't be blank") if self.location.nil?
+        self.errors.add(:city, "can't be blank") if self.city_id.nil?
       end
     end
 
