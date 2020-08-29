@@ -16,11 +16,20 @@ module EventsHelper
     date.strftime("%b")
   end
 
-  def get_event_day(event)
+  def get_day(event)
     if event.start_date.day < event.end_date.day && event.start_date.month == event.end_date.month && event.start_date.year == event.end_date.year
       "#{event.start_date.strftime("%d")} - #{event.end_date.strftime("%d")}"
     else
       event.start_date.strftime("%d")
+    end
+  end
+
+  def get_date_interval(event)
+    if event.ends_same_day?
+      content_tag(:div, "#{event.start_date.strftime("%a %b %d %Y at %l:%M %P")} to #{event.end_date.strftime("%l:%M %P")}", style: "display: inline-block;")
+    else
+      concat content_tag(:div, "#{event.start_date.strftime("%a %b %d %Y at %l:%M %P")}", style: "display: inline-block;")
+      content_tag(:div, "to #{event.end_date.strftime("%a %b %d %Y at %l:%M %P")}", style: "display: block; padding-left: 0.2rem;")
     end
   end
 

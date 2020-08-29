@@ -6,13 +6,15 @@
     <%= content_tag(:div, class: "event-details-container") do %>
       <%= content_tag(:div, class: "event-details") do %>
         <%= content_tag(:div, class: "event-date") do %>
-
+          <%= icon("far", "clock", class: "pr-1", style: "font-size: 14px;") %>
+          <%= get_date_interval(@event) %>
         <% end %>
         <%= content_tag(:div, class: "event-title") do %>
           <%= content_tag(:h1, @event.name) %>
           <%= get_organizers(@event) %>
         <% end %>
         <%= content_tag(:div, class: "event-location") do %>
+          <%= ion_icon 'ios-location', text: content_tag(:span, get_location(@event)) %>
         <% end %>
       <% end %>
     <% end %>

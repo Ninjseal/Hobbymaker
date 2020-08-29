@@ -31,6 +31,10 @@ class Event < ApplicationRecord
     Favorite.exists?(user_id: user.id, favorite_item_id: self.id, favorite_item_type: "event")
   end
 
+  def ends_same_day?
+    self.start_date.to_date == self.end_date.to_date
+  end
+
   private
 
     def default_thumbnail_url

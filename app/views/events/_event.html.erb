@@ -16,7 +16,7 @@
   <%= content_tag(:div, class: "meta") do %>
     <%= content_tag(:div, class: "meta-left") do %>
       <%= content_tag(:span, get_month(event.start_date), class: "up-month") %>
-      <%= content_tag(:span, get_event_day(event), class: "up-day") %>
+      <%= content_tag(:span, get_day(event), class: "up-day") %>
     <% end %>
     <%= content_tag(:div, class: "meta-right") do %>
       <%= content_tag(:div, format_date(event.start_date), class: "date") %>
