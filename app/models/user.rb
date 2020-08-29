@@ -28,6 +28,10 @@ class User < ApplicationRecord
   has_many :polls
   has_many :votes, foreign_key: :user_id, class_name: 'PollVote', dependent: :destroy
 
+  has_many :reports
+  has_many :reported_by_reports, as: :reported_item, foreign_key: :reported_item_id, foreign_type: :reported_item_type, class_name: 'Report'
+  has_many :reported_by, through: :reported_by_reports, source: :owner
+
   belongs_to :country, optional: true
 
   after_create :assign_default_role
