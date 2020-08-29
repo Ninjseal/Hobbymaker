@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_162809) do
+ActiveRecord::Schema.define(version: 2020_08_29_120024) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "namespace"
@@ -167,6 +167,32 @@ ActiveRecord::Schema.define(version: 2020_08_26_162809) do
     t.bigint "user_id", null: false
     t.bigint "event_id", null: false
     t.index ["user_id", "event_id"], name: "index_participations_on_user_id_and_event_id", unique: true
+  end
+
+  create_table "poll_options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "poll_id", null: false
+    t.string "answer", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poll_id", "answer"], name: "index_poll_options_on_poll_id_and_answer", unique: true
+  end
+
+  create_table "poll_votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "poll_option_id", null: false
+    t.integer "poll_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "poll_option_id", "poll_id"], name: "index_poll_votes", unique: true
+  end
+
+  create_table "polls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "question", null: false
+    t.boolean "allow_multiple_answers", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "question"], name: "index_polls_on_user_id_and_question", unique: true
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

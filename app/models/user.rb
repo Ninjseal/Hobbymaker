@@ -25,6 +25,9 @@ class User < ApplicationRecord
   has_many :following_follows, foreign_key: :follower_id, class_name: 'Follow'
   has_many :following, through: :following_follows, source: :following
 
+  has_many :polls
+  has_many :votes, foreign_key: :user_id, class_name: 'PollVote', dependent: :destroy
+
   belongs_to :country, optional: true
 
   after_create :assign_default_role

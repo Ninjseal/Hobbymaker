@@ -83,3 +83,12 @@ f1.save
 f2 = Favorite.new(user_id: u.id)
 f2.favorite_item = post1
 f2.save
+
+# Polls
+p1 = Poll.create(user_id: u_admin.id, question: 'How many times do you fart daily?', allow_multiple_answers: false)
+op1 = PollOption.create(poll_id: p1.id, answer: '0')
+op2 = PollOption.create(poll_id: p1.id, answer: '1-4 times')
+op3 = PollOption.create(poll_id: p1.id, answer: '5-9 times')
+op4 = PollOption.create(poll_id: p1.id, answer: '10+ times')
+op5 = PollOption.create(poll_id: p1.id, answer: 'I\'m a gas dispenser')
+v1 = PollVote.create(user_id: u.id, poll_option_id: op5.id, poll_id: p1.id)
