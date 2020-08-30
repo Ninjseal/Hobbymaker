@@ -9,7 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
-
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -30,10 +29,18 @@ Vue.component('blog-post', {
   template: '<h3>{{ title }}</h3>'
 })
 
+$(document).ready(function() {
+  $("body").tooltip({
+    selector: '[data-toggle="tooltip"]'
+  });
+});
+
 document.addEventListener('turbolinks:load', () => {
   $(".icon-heart").click(favorite_event_toggle);
   $(".btn-follow").click(follow_user);
   $(".btn-unfollow").click(unfollow_user);
+  $(".btn-withdraw").click(withdraw_event);
+  $(".btn-participate").click(join_event);
 });
 
 function favorite_event_toggle() {
@@ -71,6 +78,30 @@ function unfollow_user() {
       var id = $(data).attr("data-id");
       $(`button.btn-unfollow[data-id='${id}']`).replaceWith(data);
       $(`button.btn-follow[data-id='${id}']`).click(follow_user);
+    }
+  });
+}
+
+function join_event() {
+  var id = parseInt($(this).attr("data-id"));
+  $.post({ url: `/events/${id}/join`,
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    success: function(data, status, xhr) {
+      var id = $(data).attr("data-id");
+      $(`button.btn-participate[data-id='${id}']`).replaceWith(data);
+      $(`button.btn-withdraw[data-id='${id}']`).click(withdraw_event);
+    }
+  });
+}
+
+function withdraw_event() {
+  var id = parseInt($(this).attr("data-id"));
+  $.post({ url: `/events/${id}/withdraw`,
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    success: function(data, status, xhr) {
+      var id = $(data).attr("data-id");
+      $(`button.btn-withdraw[data-id='${id}']`).replaceWith(data);
+      $(`button.btn-participate[data-id='${id}']`).click(join_event);
     }
   });
 }

@@ -3,10 +3,10 @@ const { VueLoaderPlugin } = require('vue-loader')
 const vue = require('./loaders/vue')
 
 const webpack = require('webpack')
-environment.plugins.prepend('Provide',
+environment.plugins.append('Provide',
   new webpack.ProvidePlugin({
-    $: 'jquery/src/jquery',
-    jQuery: 'jquery/src/jquery',
+    $: 'jquery',
+    jQuery: 'jquery',
     Popper: ['popper.js', 'default']
   })
 )

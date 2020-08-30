@@ -1,20 +1,65 @@
 <%= content_tag(:div, class: "event-body") do %>
   <%= content_tag(:div, class: "event-header") do %>
     <%= content_tag(:div, class: "event-img-container") do %>
-      <%= image_tag(@event.thumbnail.url, class: "event-img") %>
+      <%= image_tag(@event.thumbnail.url, class: "event-img img-fluid") %>
     <% end %>
     <%= content_tag(:div, class: "event-details-container") do %>
       <%= content_tag(:div, class: "event-details") do %>
-        <%= content_tag(:div, class: "event-date") do %>
-          <%= icon("far", "clock", class: "pr-1", style: "font-size: 14px;") %>
-          <%= get_date_interval(@event) %>
-        <% end %>
         <%= content_tag(:div, class: "event-title") do %>
           <%= content_tag(:h1, @event.name) %>
           <%= get_organizers(@event) %>
         <% end %>
-        <%= content_tag(:div, class: "event-location") do %>
-          <%= ion_icon 'ios-location', text: content_tag(:span, get_location(@event)) %>
+      <% end %>
+      <%= content_tag(:div, class: "event-join mt-auto") do %>
+        <% if user_participates?(@event) %>
+          <%= button_tag('Withdraw', type: 'button', class: "btn btn-withdraw btn-outline-danger", "data-id": @event.id) %>
+        <% else %>
+          <%= button_tag('Participate', type: 'button', class: "btn btn-participate btn-outline-success", "data-id": @event.id) %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= content_tag(:div, class: "btn-like-event-show") do %>
+      <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
+        <% if is_favored?(@event) %>
+          <%= icon("fas", "heart", class: "icon-heart favorited", title: 'Favorite event', data: { id: @event.id, toggle: "tooltip", placement: "top" }) %>
+        <% else %>
+          <%= icon("far", "heart", class: "icon-heart", title: 'Favorite event', data: { id: @event.id, toggle: "tooltip", placement: "top" }) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:section, class: "event-content-wrapper") do %>
+    <%= content_tag(:div, class: "event-content") do %>
+      <%= content_tag(:div, style: "margin: 0; padding: 0; border-top: 0;") do %>
+        <%= content_tag(:div, class: "event-description") do %>
+          <%= content_tag(:div, class: "structured-content") do %>
+            <%= content_tag(:div, @event.name, class: "event-description-title") %>
+            <%= content_tag(:div, "About this Event", class: "event-description-about") %>
+            <%= content_tag(:div, @event.description, class: "event-description-text") %>
+          <% end %>
+        <% end %>
+        <%= content_tag(:div, class: "event-info") do %>
+          <%= content_tag(:div, class: "event-date") do %>
+            <%= content_tag(:div, class: "event-date-head") do %>
+              <% content_tag(:h3, 'Date & Time') %>
+            <% end %>
+            <%= content_tag(:div, class: "event-date-text") do %>
+              <%= icon("far", "clock") %>
+              <%= content_tag(:span, get_date_interval(@event)) %>
+              <%= content_tag(:div, class: "event-add-to-calendar") do %>
+                <%= link_to('Add to Google Calendar', add_to_google_calendar_event_path(@event), method: :post, remote: true) %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= content_tag(:div, class: "event-location") do %>
+            <%= content_tag(:div, class: "event-location-head") do %>
+              <% content_tag(:h3, 'Location') %>
+            <% end %>
+            <%= content_tag(:div, class: "event-location-text") do %>
+              <%= icon("fas", "map-marker-alt") %>
+              <%= content_tag(:span, get_location(@event)) %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>

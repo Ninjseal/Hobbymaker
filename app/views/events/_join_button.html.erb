@@ -1,0 +1,5 @@
+<% if btn_type == "join" %>
+  <%= button_tag("Participate", type: 'button', class: "btn btn-participate btn-outline-success", "data-id": event_id) %>
+<% elsif btn_type == "withdraw" %>
+  <%= button_tag("Withdraw", type: 'button', class: "btn btn-withdraw btn-outline-danger", "data-id": event_id) %>
+<% end %>

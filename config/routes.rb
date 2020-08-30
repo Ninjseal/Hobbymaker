@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :events do
     post :add_to_google_calendar, on: :member
     post :add_to_favorites, on: :member
+    post :join, on: :member
+    post :withdraw, on: :member
   end
 
   get '/profile/:id', to: 'profile#show', as: 'user_profile'

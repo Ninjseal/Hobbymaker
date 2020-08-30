@@ -26,16 +26,20 @@ module EventsHelper
 
   def get_date_interval(event)
     if event.ends_same_day?
-      content_tag(:div, "#{event.start_date.strftime("%a %b %d %Y at %l:%M %P")} to #{event.end_date.strftime("%l:%M %P")}", style: "display: inline-block;")
+      "#{event.start_date.strftime("%a %b %d %Y at %l:%M %P")} to #{event.end_date.strftime("%l:%M %P")}"
     else
-      concat content_tag(:div, "#{event.start_date.strftime("%a %b %d %Y at %l:%M %P")}", style: "display: inline-block;")
-      content_tag(:div, "to #{event.end_date.strftime("%a %b %d %Y at %l:%M %P")}", style: "display: block; padding-left: 0.2rem;")
+      "#{event.start_date.strftime("%a %b %d %Y at %l:%M %P")} to #{event.end_date.strftime("%a %b %d %Y at %l:%M %P")}"
     end
   end
 
   def is_favored?(event)
     return false if current_user.nil?
     event.is_favored_by?(current_user)
+  end
+
+  def user_participates?(event)
+    return false if current_user.nil?
+    current_user.participates?(event)
   end
 
   def get_organizers(event)

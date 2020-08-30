@@ -72,6 +72,10 @@ class User < ApplicationRecord
     Follow.exists?(follower_id: user.id, following_id: self.id)
   end
 
+  def participates?(event)
+    self.joined_events.pluck(:id).include?(event.id)
+  end
+
   private
 
     def assign_default_role

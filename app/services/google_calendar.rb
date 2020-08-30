@@ -11,7 +11,7 @@ class GoogleCalendar
 
   def create_event(event)
     client = get_google_calendar_client
-    unless get_calendar_event(event, client).present?
+    if client.present? && get_calendar_event(event, client).blank?
       calendar_event = Google::Apis::CalendarV3::Event.new(format_event(event))
       result = client.insert_event(CALENDAR_ID, calendar_event)
       result.present?

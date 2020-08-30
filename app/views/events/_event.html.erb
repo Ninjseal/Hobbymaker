@@ -2,9 +2,9 @@
   <%= content_tag(:div, class: "btn-like-event") do %>
     <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
       <% if is_favored?(event) %>
-        <%= icon("fas", "heart", class: "icon-heart favorited", "data-id": event.id) %>
+        <%= icon("fas", "heart", class: "icon-heart favorited", "data-id": event.id, title: 'Favorite event', data: { toggle: "tooltip", placement: "top" }) %>
       <% else %>
-        <%= icon("far", "heart", class: "icon-heart", "data-id": event.id) %>
+        <%= icon("far", "heart", class: "icon-heart", "data-id": event.id, title: 'Favorite event', data: { toggle: "tooltip", placement: "top" }) %>
       <% end %>
     <% end %>
   <% end %>
