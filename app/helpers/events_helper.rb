@@ -5,10 +5,16 @@ module EventsHelper
   end
 
   def get_location(event)
-    if event.is_online?
-      event.kind.titleize
+    return event.kind.titleize if event.is_online?
+    event.location
+  end
+
+  def detailed_location(event)
+    return event.kind.titleize if event.is_online?
+    if event.region.name == event.city.name
+      "#{event.location}, #{event.city.name}, #{event.country.name}"
     else
-      event.location
+      "#{event.location}, #{event.city.name}, #{event.region.name}, #{event.country.name}"
     end
   end
 

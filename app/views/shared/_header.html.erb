@@ -11,9 +11,14 @@
           <%= ion_icon 'home', text: content_tag(:span, "Home") %>
         <% end -%>
       <% end -%>
-      <%= content_tag(:li, class: nav_item_class(controller_inquiry.events?)) do %>
+      <%= content_tag(:li, class: nav_item_class(controller_inquiry.events? && !action_inquiry.new?)) do %>
         <%= link_to(events_path, class: "nav-link") do %>
           <%= ion_icon 'android-calendar', text: content_tag(:span, "Events") %>
+        <% end -%>
+      <% end -%>
+      <%= content_tag(:li, class: nav_item_class(controller_inquiry.events? && action_inquiry.new?)) do %>
+        <%= link_to(new_event_path, class: "nav-link") do %>
+          <%= ion_icon 'plus', text: content_tag(:span, "Create Event") %>
         <% end -%>
       <% end -%>
     <% end -%>

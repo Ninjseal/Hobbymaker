@@ -13,5 +13,8 @@ Rails.application.routes.draw do
   post '/follow_user/:id', to: 'profile#follow_user', as: 'follow_user'
   post '/unfollow_user/:id', to: 'profile#unfollow_user', as: 'unfollow_user'
 
+  post '/regions/:id', to: 'application#fetch_regions', as: 'fetch_regions'
+  post '/cities/:id', to: 'application#fetch_cities', as: 'fetch_cities'
+
   root to: 'home#index'
 end

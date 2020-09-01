@@ -57,7 +57,7 @@
             <% end %>
             <%= content_tag(:div, class: "event-location-text") do %>
               <%= icon("fas", "map-marker-alt") %>
-              <%= content_tag(:span, get_location(@event)) %>
+              <%= content_tag(:span, detailed_location(@event)) %>
             <% end %>
           <% end %>
         <% end %>

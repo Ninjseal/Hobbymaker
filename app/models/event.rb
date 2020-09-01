@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  attr_accessor :country_id, :region_id
+
   has_and_belongs_to_many :organizers, join_table: :organizations, association_foreign_key: :user_id, class_name: 'User'
   has_and_belongs_to_many :participants, join_table: :participations, association_foreign_key: :user_id, class_name: 'User'
 
@@ -26,6 +28,14 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where("start_date > ?", Time.current) }
   scope :in_progress, -> { where("start_date < :current_time AND end_date > :current_time", current_time: Time.current) }
   scope :past_events, -> { where("end_date < ?", Time.current) }
+
+  def country
+    self.city.region.country
+  end
+
+  def region
+    self.city.region
+  end
 
   def is_online?
     self.kind == 'online'

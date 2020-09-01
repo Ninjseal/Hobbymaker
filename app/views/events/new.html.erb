@@ -1,0 +1,56 @@
+<%= content_tag(:div, class: "row") do %>
+  <%= content_tag(:div, class: "create-event-box") do %>
+    <%= content_tag(:h2, 'Publish Your Event', class: "themed-text") %>
+    <%= content_tag(:fieldset, class: "create-event-form") do %>
+      <%= content_tag(:p, 'Thumbnail Preview', style: "margin-bottom: 0.5rem;") %>
+      <%= content_tag(:div, class: "event-thumbnail-preview-wrapper", title: 'Event Thumbnail') do %>
+        <%= image_tag(@event.thumbnail.url, id: "event-thumbnail-preview", class: "img-fluid") %>
+      <% end %>
+      <%= form_for(@event, url: events_path, method: :post) do |f| %>
+        <%= content_tag(:div, class: "field custom-file") do %>
+          <%= f.label :thumbnail, "Event Thumbnail", class: "custom-file-label" %>
+          <%= f.file_field :thumbnail, class: "custom-file-input" %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :name, "Event Name" %>
+          <%= f.text_field :name, class: "form-control", autofocus: true, required: true %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :start_date, "Start Time" %>
+          <%= f.datetime_field :start_date, min: Date.today.beginning_of_day, class: "form-control", required: true %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :end_date, "End Time" %>
+          <%= f.datetime_field :end_date, min: Date.today.beginning_of_day, class: "form-control", required: true %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :kind, "Where will your event take place?" %>
+          <%= f.select :kind, Event.kinds.keys.map { |key, val| [key.humanize, key] }.reverse, {}, { class: "custom-select" } %>
+        <% end %>
+        <%= content_tag(:div, class: "field venue") do %>
+          <%= f.label :country %>
+          <%= f.collection_select :country_id, Country.order_by_name, :id, :name, { prompt: "Select Country" }, { class: "custom-select" } %>
+        <% end %>
+        <%= content_tag(:div, class: "field venue") do %>
+          <%= f.label :region, "Region/State" %>
+          <%= f.collection_select :region_id, [], :id, :name, { prompt: "Select Region" }, { class: "custom-select" } %>
+        <% end %>
+        <%= content_tag(:div, class: "field venue") do %>
+          <%= f.label :city %>
+          <%= f.collection_select :city_id, [], :id, :name, { prompt: "Select City" }, { class: "custom-select" } %>
+        <% end %>
+        <%= content_tag(:div, class: "field venue") do %>
+          <%= f.label :location %>
+          <%= f.text_field :location, class: "form-control" %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "form-control", required: true %>
+        <% end %>
+        <%= content_tag(:div, class: "actions mt-4") do %>
+          <%= f.submit "Publish Event", class: "submit-button-lg" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
 
   before_action :load_record, only: [:show, :add_to_favorites, :add_to_google_calendar, :join, :withdraw]
+  before_action :init_record, only: [:create]
 
   def index
     @events = Event.all
@@ -15,18 +16,20 @@ class EventsController < ApplicationController
   end
 
   def create
+    if @event.save
+      redirect_to root_path
+    else
+      render action: :new
+    end
   end
 
   def edit
-
   end
 
   def update
-
   end
 
   def destroy
-
   end
 
   def add_to_google_calendar
@@ -76,6 +79,23 @@ class EventsController < ApplicationController
   end
 
   private
+
+    def create_params
+      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :city_id, :location, :description)
+    end
+
+    def create_params_online
+      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :description)
+    end
+
+    def init_record
+      if params[:event][:kind] == "online"
+        @event = Event.new(create_params_online)
+      else
+        @event = Event.new(create_params)
+      end
+      @event.organizers << current_user
+    end
 
     def load_record
       @event = Event.where(id: params[:id]).first

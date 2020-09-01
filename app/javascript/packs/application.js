@@ -41,7 +41,67 @@ document.addEventListener('turbolinks:load', () => {
   $(".btn-unfollow").click(unfollow_user);
   $(".btn-withdraw").click(withdraw_event);
   $(".btn-participate").click(join_event);
+  // New Event
+  $("#event_kind").change(changed_event_kind);
+  $("#event_country_id").change(event_fetch_regions);
+  $(".custom-file-input").on("change", function(event) {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+  $("#event_thumbnail").change(function() {
+    readURL(this, preview_event_thumbnail);
+  });
 });
+
+function preview_event_thumbnail() {
+  $('#event-thumbnail-preview').attr('src', this.result);
+}
+
+function readURL(input, callback) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = callback;
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+function event_fetch_regions() {
+  if ($(this).val() === "") {
+    $("#event_region_id").empty().append('<option value>Select Region</option>');
+    $(`#event_city_id`).empty().append('<option value>Select City</option>');
+  } else {
+    var id = $(this).val();
+    $.post({ url: `/regions/${id}`, data: { resource: "event" },
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      success: function(data, status, xhr) {
+        $(`#event_region_id`).replaceWith(data);
+        $("#event_region_id").change(event_fetch_cities);
+        $(`#event_city_id`).empty().append('<option value>Select City</option>');
+      }
+    });
+  }
+}
+
+function event_fetch_cities() {
+  if ($(this).val() === "") {
+    $(`#event_city_id`).empty().append('<option value>Select City</option>');
+  } else {
+    var id = $(this).val();
+    $.post({ url: `/cities/${id}`, data: { resource: "event" },
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      success: function(data, status, xhr) {
+        $(`#event_city_id`).replaceWith(data);
+      }
+    });
+  }
+}
+
+function changed_event_kind() {
+  if ($(this).val() == "online")
+    $(".field.venue").addClass("hide");
+  else
+    $(".field.venue").removeClass("hide");
+}
 
 function favorite_event_toggle() {
   var id = parseInt($(this).attr("data-id"));
