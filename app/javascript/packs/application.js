@@ -165,3 +165,6 @@ function withdraw_event() {
     }
   });
 }
+
+require("trix")
+require("@rails/actiontext")

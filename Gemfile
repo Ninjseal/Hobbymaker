@@ -16,6 +16,7 @@ gem "paperclip", "~> 6.0.0"
 gem 'activeadmin'
 gem 'activeadmin_addons'
 gem 'font-awesome-sass'
+gem 'trix'
 
 # Omniauth - Google API
 gem 'omniauth-google-oauth2'

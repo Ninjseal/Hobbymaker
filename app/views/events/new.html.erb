@@ -45,7 +45,7 @@
         <% end %>
         <%= content_tag(:div, class: "field") do %>
           <%= f.label :description %>
-          <%= f.text_area :description, class: "form-control", required: true %>
+          <%= f.rich_text_area :description, required: true %>
         <% end %>
         <%= content_tag(:div, class: "actions mt-4") do %>
           <%= f.submit "Publish Event", class: "submit-button-lg" %>
