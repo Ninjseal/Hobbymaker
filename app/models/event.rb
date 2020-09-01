@@ -17,7 +17,8 @@ class Event < ApplicationRecord
   validate :venue_has_location_and_city
   validates_presence_of :name, :description, :kind, :start_date, :end_date
 
-  has_attached_file :thumbnail, default_url: :default_thumbnail_url
+  has_attached_file :thumbnail, default_url: :default_thumbnail_url, url: "/system/:hash.:extension",
+  hash_secret: "3973a561a452b1c72a79626a30e98e22eadb06cbbfe42ffdb0c78e71ff2bd0ca595221287b7d1d0c42a3ea9f67a6c9a66c553e690356a591b8601b68b95ded45"
   validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
 
   scope :online_events, -> { where(kind: Event.kinds['online']) }
@@ -28,6 +29,8 @@ class Event < ApplicationRecord
   scope :upcoming, -> { where("start_date > ?", Time.current) }
   scope :in_progress, -> { where("start_date < :current_time AND end_date > :current_time", current_time: Time.current) }
   scope :past_events, -> { where("end_date < ?", Time.current) }
+
+  has_rich_text :description
 
   def country
     self.city.region.country

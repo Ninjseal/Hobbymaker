@@ -41,7 +41,8 @@ class User < ApplicationRecord
 
   enum gender: { male: 0, female: 1, other: 2 }
 
-  has_attached_file :profile_photo, default_url: :default_profile_photo_url
+  has_attached_file :profile_photo, default_url: :default_profile_photo_url, url: "/system/:hash.:extension",
+  hash_secret: "48fd698bbcff86f6d29227cc22eedc5b1d10eacb27d5e2dfa1e80cf244ab6c12505fd24587f61095e46b90d08aea4164c2b90fdb29f569d1ae7e010b4f811235"
   validates_attachment_content_type :profile_photo, content_type: /\Aimage\/.*\z/
 
   def self.from_omniauth(auth)
