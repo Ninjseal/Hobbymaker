@@ -40,9 +40,9 @@ u.interests << i_art << i_crafts << i_music << i_games << i_film << i_shopping
 u_admin.interests << i_games << i_music << i_sports << i_dance << i_party
 
 # Create posts
-post1 = Post.create(title: 'Games', body: 'Stuff', created_by: u_admin.id, interest_id: i_games.id)
-post2 = Post.create(title: 'I like music', body: 'Nice', created_by: u.id, interest_id: i_music.id)
-post3 = Post.create(title: 'Test', body: 'Testing', created_by: u_admin.id, interest_id: i_party.id)
+post1 = Post.create(title: 'Games', content: 'Stuff', created_by: u_admin.id, interest_id: i_games.id)
+post2 = Post.create(title: 'I like music', content: 'Nice', created_by: u.id, interest_id: i_music.id)
+post3 = Post.create(title: 'Test', content: 'Testing', created_by: u_admin.id, interest_id: i_party.id)
 
 # Create comments
 comment1 = Comment.create(content: 'Comment test', created_by: u.id, post_id: post1.id)

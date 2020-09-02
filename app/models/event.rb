@@ -15,7 +15,7 @@ class Event < ApplicationRecord
   enum kind: { online: 0, venue: 1 }
 
   validate :venue_has_location_and_city
-  validates_presence_of :name, :description, :kind, :start_date, :end_date
+  validates_presence_of :name, :kind, :start_date, :end_date
 
   has_attached_file :thumbnail, default_url: :default_thumbnail_url, url: "/system/:hash.:extension",
   hash_secret: "3973a561a452b1c72a79626a30e98e22eadb06cbbfe42ffdb0c78e71ff2bd0ca595221287b7d1d0c42a3ea9f67a6c9a66c553e690356a591b8601b68b95ded45"

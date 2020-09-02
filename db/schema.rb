@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2020_09_01_103106) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.text "description", null: false
     t.string "location"
     t.datetime "start_date", null: false
     t.datetime "end_date", null: false
@@ -207,7 +206,6 @@ ActiveRecord::Schema.define(version: 2020_09_01_103106) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
-    t.text "body", null: false
     t.integer "interest_id", null: false
     t.integer "created_by", null: false
     t.datetime "created_at", precision: 6, null: false

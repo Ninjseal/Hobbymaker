@@ -58,7 +58,7 @@ class User < ApplicationRecord
     else
       user = create(uid: auth.uid, email: auth.info.email, password: Devise.friendly_token[0, 20], name: auth.info.name, confirmed_at: DateTime.now)
     end
-    user.reload
+    user&.reload
   end
 
   def direct_chats

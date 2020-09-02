@@ -9,7 +9,9 @@ class Post < ApplicationRecord
   has_many :reported_by_reports, as: :reported_item, foreign_key: :reported_item_id, foreign_type: :reported_item_type, class_name: 'Report'
   has_many :reported_by, through: :reported_by_reports, source: :owner
 
-  validates_presence_of :title, :body
+  validates_presence_of :title
+
+  has_rich_text :content
 
   def is_favored_by?(user)
     Favorite.exists?(user_id: user.id, favorite_item_id: self.id, favorite_item_type: "post")
