@@ -815,6 +815,14 @@ ul {
 .custom-file label {
   overflow: hidden;
 }
+.custom-file {
+  width: 92% !important;
+}
+
+#event-thumbnail-reset {
+  font-size: 1.2rem;
+  padding: 0.25rem 0.55rem;
+}
 
 .field trix-editor {
   border: 1px solid #D6D0C4;

@@ -3,7 +3,7 @@ window.addEventListener("trix-file-accept", function(event) {
   const maxFileSize = 2048 * 2048;
   if (!acceptedTypes.includes(event.file.type)) {
     event.preventDefault();
-    alert('Only jpeg or png attachments are allowed!');
+    alert('Only JPEG and PNG attachments are allowed!');
   } else if (event.file.size > maxFileSize) {
     event.preventDefault();
     alert('Attachment size exceeds 2MB!');

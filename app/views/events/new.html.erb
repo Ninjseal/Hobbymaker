@@ -9,7 +9,10 @@
       <%= form_for(@event, url: events_path, method: :post) do |f| %>
         <%= content_tag(:div, class: "field custom-file") do %>
           <%= f.label :thumbnail, "Event Thumbnail", class: "custom-file-label" %>
-          <%= f.file_field :thumbnail, class: "custom-file-input" %>
+          <%= f.file_field :thumbnail, class: "custom-file-input", accept: "image/*" %>
+        <% end %>
+        <%= button_tag(type: "button", id: "event-thumbnail-reset", class: "btn btn-sm btn-outline-danger", disabled: true, title: "Clear thumbnail", data: { toggle: 'tooltip', placement: 'top' }) do %>
+          <%= ion_icon('android-close', 'aria-hidden': 'true') %>
         <% end %>
         <%= content_tag(:div, class: "field") do %>
           <%= f.label :name, "Event Name" %>
