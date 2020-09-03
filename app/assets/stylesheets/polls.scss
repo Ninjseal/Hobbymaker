@@ -1,0 +1,54 @@
+.create-poll-box {
+  background: #fff;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: relative;
+  display: block;
+  float: none;
+  width: 650px;
+  margin: 30px auto 20px auto;
+  border: 1px solid #d0d0c8;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  text-align: center;
+}
+@media screen and (max-width: 767px) {
+  .create-poll-box {
+    padding: 20px;
+  }
+}
+
+.create-poll-box h2 {
+  margin-top: 0;
+  text-rendering: optimizelegibility;
+  line-height: 36px;
+  margin-bottom: 30px;
+}
+
+.create-poll-box fieldset {
+  border: none;
+  width: 450px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+.field label {
+  display: block;
+}
+.field input:not([type='checkbox']),
+.field textarea,
+.field select {
+  vertical-align: middle;
+}
+
+.field input[type='checkbox'] + label {
+  display: inline-block !important;
+}
+
+.create-poll-box a {
+  color: #CF6B54;
+}
+
+.create-poll-box a + div.field {
+  margin-top: 1em;
+}

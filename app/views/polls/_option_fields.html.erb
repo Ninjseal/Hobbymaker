@@ -1,0 +1,8 @@
+<%= content_tag(:div, class: "field poll-option input-group mb-3") do %>
+  <%= f.text_field :answer, class: "form-control", required: true, placeholder: "Enter poll option" %>
+  <%= content_tag(:div, class: "input-group-append") do %>
+    <%= button_tag(type: "button", class: "btn btn-outline-danger remove-poll-option") do %>
+      <%= ion_icon('android-close', 'aria-hidden': 'true') %>
+    <% end %>
+  <% end %>
+<% end %>

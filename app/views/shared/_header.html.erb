@@ -21,6 +21,11 @@
           <%= ion_icon 'plus', text: content_tag(:span, "Create Event") %>
         <% end -%>
       <% end -%>
+      <%= content_tag(:li, class: nav_item_class(controller_inquiry.polls? && action_inquiry.new?)) do %>
+        <%= link_to(new_poll_path, class: "nav-link") do %>
+          <%= ion_icon 'plus', text: content_tag(:span, "Create Poll") %>
+        <% end -%>
+      <% end -%>
     <% end -%>
     <%= content_tag(:form, class: "form-inline mt-2 mt-md-0") do %>
       <%= text_field(:q, :search_query, class: "form-control mr-sm-2", placeholder: "Search", 'aria-label': "Search") %>

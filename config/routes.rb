@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     post :withdraw, on: :member
   end
 
+  resources :polls
   resources :posts
+
   get '/profile/:id', to: 'profile#show', as: 'user_profile'
   post '/follow_user/:id', to: 'profile#follow_user', as: 'follow_user'
   post '/unfollow_user/:id', to: 'profile#unfollow_user', as: 'unfollow_user'

@@ -1,0 +1,29 @@
+<%= content_tag(:div, class: "row") do %>
+  <%= content_tag(:div, class: "create-poll-box") do %>
+    <%= content_tag(:h2, 'New Poll', class: "themed-text") %>
+    <%= content_tag(:fieldset, class: "create-poll-form") do %>
+      <%= form_for(@poll, url: polls_path, method: :post) do |f| %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :question, "Poll Question" %>
+          <%= f.text_field :question, class: "form-control", autofocus: true, required: true, placeholder: "Type your question here" %>
+        <% end %>
+        <%= content_tag(:p, 'Poll Options', style: "margin-bottom: 0.5rem;") %>
+        <%= f.fields_for :options do |ff| %>
+          <%= content_tag(:div, class: "field poll-option") do %>
+            <%= ff.text_field :answer, class: "form-control", required: true, placeholder: "Enter poll option" %>
+          <% end %>
+        <% end %>
+        <%= link_to_add_fields f, :options do %>
+          <%= ion_icon 'plus', text: content_tag(:span, "Add option") %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.check_box :allow_multiple_answers %>
+          <%= f.label :allow_multiple_answers, 'Allow multiple poll answers' %>
+        <% end %>
+        <%= content_tag(:div, class: "actions mt-3") do %>
+          <%= f.submit "Create Poll", class: "submit-button-lg" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -8,6 +8,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
+require("trix")
+require("@rails/actiontext")
 
 import '../trix-editor-overrides'
 
@@ -40,6 +42,7 @@ $(document).ready(function() {
 var default_event_thumbnail_src;
 
 document.addEventListener('turbolinks:load', () => {
+  $("[data-form-prepend]").click(form_prepend_new_record);
   $(".icon-heart").click(favorite_event_toggle);
   $(".btn-follow").click(follow_user);
   $(".btn-unfollow").click(unfollow_user);
@@ -52,6 +55,10 @@ document.addEventListener('turbolinks:load', () => {
   $("#event-thumbnail-reset").click(clear_event_thumbnail);
   default_event_thumbnail_src = $('#event-thumbnail-preview').attr('src');
 });
+
+function remove_poll_option() {
+  $(this).parent().parent().remove();
+}
 
 function preview_event_thumbnail() {
   $('#event-thumbnail-preview').attr('src', this.result);
@@ -182,5 +189,22 @@ function withdraw_event() {
   });
 }
 
-require("trix")
-require("@rails/actiontext")
+function form_prepend_new_record() {
+  var obj = $($(this).attr("data-form-prepend"));
+  obj.find("input, select, textarea").each(function() {
+    var time = new Date().getTime();
+    $(this).attr("name", function() {
+      return $(this)
+        .attr("name")
+        .replace("new_record", time);
+    });
+    $(this).attr("id", function() {
+      return $(this)
+        .attr("id")
+        .replace("new_record", time);
+    });
+  });
+  obj.insertBefore(this);
+  obj.find(".remove-poll-option").click(remove_poll_option);
+  return false;
+}
