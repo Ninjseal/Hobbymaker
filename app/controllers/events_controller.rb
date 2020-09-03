@@ -98,7 +98,7 @@ class EventsController < ApplicationController
     end
 
     def load_record
-      @event = Event.where(id: params[:id]).first
+      @event = Event.with_rich_text_description_and_embeds.where(id: params[:id]).first
       return not_found unless @event.present?
     end
 
