@@ -1,7 +1,7 @@
 class PollsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :load_record, only: [:show]
+  before_action :load_record, only: [:show, :vote]
   before_action :init_record, only: [:create]
 
   def index
@@ -31,6 +31,14 @@ class PollsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def vote
+    option_ids = params[:poll][:option_ids].reject(&:blank?)
+    option_ids.each do |option_id|
+      PollVote.create(user_id: current_user.id, poll_option_id: option_id, poll_id: @poll.id)
+    end
+    redirect_to poll_url(@poll)
   end
 
   private

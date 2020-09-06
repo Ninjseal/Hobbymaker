@@ -10,6 +10,8 @@ require("channels")
 require("jquery")
 require("trix")
 require("@rails/actiontext")
+require("chartkick")
+require("chart.js")
 
 import '../trix-editor-overrides'
 
@@ -54,7 +56,30 @@ document.addEventListener('turbolinks:load', () => {
   $("#event_thumbnail").change(selected_event_thumbnail);
   $("#event-thumbnail-reset").click(clear_event_thumbnail);
   default_event_thumbnail_src = $('#event-thumbnail-preview').attr('src');
+  // Show Poll
+  setTimeout(display_progress, 100); // Wait .1 s before showing progress
+  $("input:checkbox[id^='poll_option_ids_']").click(toggle_required);
+  $(".poll-vote-form").not(".is-multi").find("input:checkbox[id^='poll_option_ids_']").click(restrict_check);
 });
+
+function restrict_check() {
+  if ($(this).is(':checked'))
+    $("input:checkbox[id^='poll_option_ids_']").not(this).prop('checked', false);
+}
+
+function toggle_required() {
+  if (!($("input:checkbox[id^='poll_option_ids_']").is(':checked')))
+    $("input:checkbox[id^='poll_option_ids_']").prop('required', true);
+  else if ($(this).is(':required'))
+    $("input:checkbox[id^='poll_option_ids_']").prop('required', false);
+}
+
+function display_progress() {
+  $(".progress-bar[data-result-percent]").each(function() {
+    var percentage_value = $(this).attr("data-result-percent");
+    $(this).width(`${percentage_value}%`);
+  });
+}
 
 function remove_poll_option() {
   $(this).parent().parent().remove();

@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     post :withdraw, on: :member
   end
 
-  resources :polls
+  resources :polls do
+    post :vote, on: :member
+  end
+
   resources :posts
 
   get '/profile/:id', to: 'profile#show', as: 'user_profile'

@@ -77,6 +77,10 @@ class User < ApplicationRecord
     self.joined_events.pluck(:id).include?(event.id)
   end
 
+  def has_voted?(poll)
+    PollVote.exists?(user_id: self.id, poll_id: poll.id)
+  end
+
   private
 
     def assign_default_role

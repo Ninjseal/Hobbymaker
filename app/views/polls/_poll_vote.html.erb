@@ -1,0 +1,14 @@
+<%= content_tag(:fieldset, class: "poll-vote-form #{'is-multi' if poll.allow_multiple_answers}") do %>
+  <%= content_tag(:p, poll.question, id: "poll-question") %>
+  <%= form_for(poll, url: vote_poll_path(poll), method: :post) do |f| %>
+    <%= f.collection_check_boxes(:option_ids, poll.options, :id, :answer, checked: false) do |b| %>
+      <%= content_tag(:div, class: "field custom-control custom-checkbox") do %>
+        <%= b.check_box class: "custom-control-input", required: true %>
+        <%= b.label class: "custom-control-label" %>
+      <% end %>
+    <% end %>
+    <%= content_tag(:div, class: "actions mt-4") do %>
+      <%= f.submit "Vote", class: "submit-button-lg" %>
+    <% end %>
+  <% end %>
+<% end %>

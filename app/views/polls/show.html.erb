@@ -1,0 +1,8 @@
+<%= content_tag(:div, class: "show-poll-wrapper") do %>
+  <%= content_tag(:h2, 'Poll Details', class: "themed-text") %>
+  <% if user_voted?(@poll) %>
+    <%= render partial: 'poll_results', locals: { poll: @poll } %>
+  <% else %>
+    <%= render partial: 'poll_vote', locals: { poll: @poll } %>
+  <% end %>
+<% end %>

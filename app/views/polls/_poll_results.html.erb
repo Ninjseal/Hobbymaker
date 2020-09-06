@@ -1,0 +1,32 @@
+<%= content_tag(:div, class: "row") do %>
+  <%= content_tag(:div, class: "col-6") do %>
+    <%= content_tag(:p, poll.question, id: "poll-question") %>
+    <%= content_tag(:div, id: "results-list") do %>
+      <% poll.options.order("id asc").each do |option| %>
+        <%= content_tag(:div, class: "sp-option") do %>
+          <%= content_tag(:p, class: "option-text") do %>
+            <%= content_tag(:span, option.answer) %>
+            <%= content_tag(:span, option.votes.count, class: "option-count") %>
+          <% end %>
+          <%= content_tag(:div, class: "option-data") do %>
+            <%= content_tag(:div, class: "percentage-bar") do %>
+              <%= content_tag(:div, '', class: "progress-bar", style: "width: 0%;", 'data-result-percent': get_votes_percentage(option)) %>
+            <% end %>
+            <%= content_tag(:div, class: "option-stats") do %>
+              <%= content_tag(:span, get_votes_percentage(option), class: "option-percent") %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= content_tag(:div, class: "results-footer") do %>
+      <%= content_tag(:p, class: "total-votes") do %>
+        <%= content_tag(:span, poll.votes.count, id: "vote-count") %>
+        <%= ' Votes' %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "col-6 my-auto") do %>
+    <%= pie_chart(chart_data(poll), library: { pieSliceText: 'value' }, defer: true) %>
+  <% end %>
+<% end %>

@@ -9,4 +9,9 @@ class Poll < ApplicationRecord
   accepts_nested_attributes_for :options
 
   validates_presence_of :question
+
+  def voted_by?(user)
+    PollVote.exists?(user_id: user.id, poll_id: self.id)
+  end
+
 end
