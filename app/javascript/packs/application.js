@@ -35,16 +35,11 @@ Vue.component('blog-post', {
   template: '<h3>{{ title }}</h3>'
 })
 
-$(document).ready(function() {
-  $("body").tooltip({
-    selector: '[data-toggle="tooltip"]'
-  });
-});
-
 var default_event_thumbnail_src;
 var default_post_thumbnail_src;
 
 document.addEventListener('turbolinks:load', () => {
+  $("body").tooltip({ selector: '[data-toggle="tooltip"]' });
   $("[data-form-prepend]").click(form_prepend_new_record);
   $(".btn-like-event-show .icon-heart, .btn-like-event .icon-heart").click(favorite_event_toggle);
   $(".btn-like-post-show .icon-heart, .btn-like-post .icon-heart").click(favorite_post_toggle);
