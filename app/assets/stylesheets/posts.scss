@@ -1,3 +1,272 @@
-// Place all the styles related to the Posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.create-post-box {
+  background: #fff;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: relative;
+  display: block;
+  float: none;
+  width: 650px;
+  margin: 30px auto 20px auto;
+  border: 1px solid #d0d0c8;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  text-align: center;
+}
+@media screen and (max-width: 767px) {
+  .create-post-box {
+    padding: 20px;
+  }
+}
+
+.create-post-box h2 {
+  margin-top: 0;
+  text-rendering: optimizelegibility;
+  line-height: 36px;
+  margin-bottom: 30px;
+}
+
+.create-post-box fieldset {
+  border: none;
+  width: 450px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+.field label {
+  display: block;
+}
+.field input,
+.field textarea,
+.field select {
+  vertical-align: middle;
+}
+.custom-file label {
+  overflow: hidden;
+}
+.custom-file {
+  width: 92% !important;
+}
+
+#post-thumbnail-reset {
+  font-size: 1.2rem;
+  padding: 0.25rem 0.55rem;
+}
+
+.field trix-editor {
+  border: 1px solid #D6D0C4;
+  border-radius: 4px;
+  color: #495057;
+}
+.field trix-editor:focus {
+  border-color: rgba(245, 165, 117, 0.7);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5);
+  outline: 0 none !important;
+}
+.field trix-toolbar .trix-button-row {
+  font-size: 0.7em;
+}
+.field trix-toolbar .trix-button-group:not(:first-child) {
+  margin-left: 10px !important;
+}
+
+.post-thumbnail-preview-wrapper {
+  max-width: 450px;
+  max-height: 300px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-position: top;
+  background-size: cover;
+  margin-bottom: 20px;
+}
+
+.show-post-wrapper {
+  position: relative;
+  margin: 30px auto 50px auto;
+  padding-top: 0;
+  padding-bottom: 40px;
+  width: auto;
+}
+@media screen and (min-width: 767px) {
+  .show-post-wrapper {
+    width: 55vw;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .show-post-wrapper {
+    width: 45vw;
+  }
+}
+
+.post-header {
+  color: #252a40;
+  font-size: 17px;
+  line-height: 1.2941176;
+}
+
+.post-interest {
+  margin-bottom: 1.2592593em;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+}
+.post-interest a {
+  color: inherit;
+  text-decoration: none;
+}
+.post-interest a:hover {
+  text-decoration: underline;
+}
+.post-title {
+  font-size: 6.6666667vw;
+  line-height: 1.2;
+  padding-right: 3%;
+  color: #ED755A;
+}
+.post-meta {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.8888889em;
+}
+.post-meta-info {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+}
+.post-author {
+  font-family: 'Open Sans', sans-serif;
+}
+.post-author a {
+  color: inherit;
+  text-decoration: none;
+}
+.post-author a:hover{
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 655px) {
+  .post-title {
+    font-size: 38px;
+    line-height: 1.2631579;
+  }
+  .post-interest {
+    line-height: 1.2631579;
+    margin-bottom: 1.7368421em;
+  }
+  .post-meta {
+    margin-top: 1.2941176em;
+  }
+  .post-date {
+    font-size: 15px;
+    line-height: 1.2666667;
+  }
+}
+
+.btn-like-post-show {
+  z-index: 9;
+}
+.btn-like-post-show i {
+  z-index: 0;
+  background: white;
+  padding: 7px 8px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding-top: 8px;
+  display: inline;
+  width: auto;
+  height: auto;
+  vertical-align: baseline;
+  margin-top: 0;
+  text-decoration: inherit;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+.btn-like-post-show i:hover {
+  cursor: pointer;
+}
+.btn-like-post-show i::before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+.btn-like-post-show i.favorited {
+  color: red !important;
+  -webkit-animation: big-pulse 0.4s;
+  animation: big-pulse 0.4s;
+  animation-timing-function: ease-in;
+  -webkit-animation-timing-function: ease-out;
+}
+@media screen and (min-width: 767px) {
+  .btn-like-post-show i {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  .btn-like-post-show i.favorited {
+    -webkit-animation: pulse 0.4s;
+    animation: pulse 0.4s;
+  }
+}
+@keyframes pulse {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+      font-size: 1.2rem;
+      color: red;
+    }
+    50% {
+      -webkit-transform: scale3d(1.05, 1.05, 1.05);
+      transform: scale3d(1.05, 1.05, 1.05);
+      font-size: 1.5rem;
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+      font-size: 1.2rem;
+      color: red;
+    }
+}
+@keyframes big-pulse {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+      font-size: 1.5rem;
+      color: red;
+    }
+    50% {
+      -webkit-transform: scale3d(1.05, 1.05, 1.05);
+      transform: scale3d(1.05, 1.05, 1.05);
+      font-size: 1.75rem;
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+      font-size: 1.5rem;
+      color: red;
+    }
+}
+
+.post-img-container {
+  margin: 38px 0;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-position: top;
+  background-size: cover;
+}
+
+.post-content {
+  margin-top: 9.6vw;
+  color: #252a40;
+  font-size: 3.5vw;
+  line-height: 1.5;
+}
+@media screen and (min-width: 655px) {
+  .post-content {
+    margin-top: 38px;
+    font-size: 17px;
+    line-height: 1.4117647;
+  }
+}

@@ -53,7 +53,7 @@ module EventsHelper
       concat(content_tag(:span, 'Hosted By', class: "pb-2", style: "display: block; color: #2e3740;"))
       event.organizers.collect do |organizer|
         concat(content_tag(:div, class: "pb-1 pl-1", style: "display: block;") do
-          concat(link_to(organizer.name, root_path))
+          concat(link_to(organizer.name, user_profile_url(organizer)))
           if current_user == organizer
             concat(content_tag(:span, '(It\'s you)', style: "color: #ED755A;"))
           else

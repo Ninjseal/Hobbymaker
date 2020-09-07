@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     post :vote, on: :member
   end
 
-  resources :posts
+  resources :posts do
+    post :add_to_favorites, on: :member
+  end
 
   get '/profile/:id', to: 'profile#show', as: 'user_profile'
   post '/follow_user/:id', to: 'profile#follow_user', as: 'follow_user'

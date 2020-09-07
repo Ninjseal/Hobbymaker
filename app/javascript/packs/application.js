@@ -42,10 +42,12 @@ $(document).ready(function() {
 });
 
 var default_event_thumbnail_src;
+var default_post_thumbnail_src;
 
 document.addEventListener('turbolinks:load', () => {
   $("[data-form-prepend]").click(form_prepend_new_record);
-  $(".icon-heart").click(favorite_event_toggle);
+  $(".btn-like-event-show .icon-heart, .btn-like-event .icon-heart").click(favorite_event_toggle);
+  $(".btn-like-post-show .icon-heart, .btn-like-post .icon-heart").click(favorite_post_toggle);
   $(".btn-follow").click(follow_user);
   $(".btn-unfollow").click(unfollow_user);
   $(".btn-withdraw").click(withdraw_event);
@@ -56,6 +58,10 @@ document.addEventListener('turbolinks:load', () => {
   $("#event_thumbnail").change(selected_event_thumbnail);
   $("#event-thumbnail-reset").click(clear_event_thumbnail);
   default_event_thumbnail_src = $('#event-thumbnail-preview').attr('src');
+  // New Post
+  $("#post_thumbnail").change(selected_post_thumbnail);
+  $("#post-thumbnail-reset").click(clear_post_thumbnail);
+  default_post_thumbnail_src = $('#post-thumbnail-preview').attr('src');
   // Show Poll
   setTimeout(display_progress, 100); // Wait .1 s before showing progress
   $("input:checkbox[id^='poll_option_ids_']").click(toggle_required);
@@ -89,12 +95,32 @@ function preview_event_thumbnail() {
   $('#event-thumbnail-preview').attr('src', this.result);
 }
 
+function preview_post_thumbnail() {
+  $('#post-thumbnail-preview').attr('src', this.result);
+}
+
 function readURL(input, callback) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = callback;
     reader.readAsDataURL(input.files[0]); // convert to base64 string
   }
+}
+
+function clear_post_thumbnail() {
+  $(this).attr('disabled', true);
+  $(this).tooltip('hide');
+  $('#post_thumbnail').val('');
+  $('#post_thumbnail').siblings('.custom-file-label').removeClass('selected').html('Event Thumbnail');
+  $('#post-thumbnail-preview').attr('src', default_post_thumbnail_src);
+}
+
+function selected_post_thumbnail() {
+  var fileName = $(this).val().split("\\").pop();
+  if (fileName === "") return;
+  $(this).siblings('.custom-file-label').addClass('selected').html(fileName);
+  readURL(this, preview_post_thumbnail);
+  $('#post-thumbnail-reset').attr('disabled', false);
 }
 
 function clear_event_thumbnail() {
@@ -156,14 +182,43 @@ function favorite_event_toggle() {
   $.post({ url: `/events/${id}/add_to_favorites`,
     beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
   });
-  if ($(this).hasClass("far")) {
+  $(this).tooltip("disable");
+  if ($(this).hasClass("far")) { // Favorite
     $(this).addClass("fas");
     $(this).removeClass("far");
-  } else if ($(this).hasClass("fas")) {
+    $(this).attr("title", "Unfavorite event");
+    $(this).attr("data-original-title", "Unfavorite event");
+  } else if ($(this).hasClass("fas")) { // Unfavorite
     $(this).addClass("far");
     $(this).removeClass("fas");
+    $(this).attr("title", "Favorite event");
+    $(this).attr("data-original-title", "Favorite event");
   }
   $(this).toggleClass("favorited");
+  $(this).tooltip("enable");
+  $(this).tooltip('hide');
+}
+
+function favorite_post_toggle() {
+  var id = parseInt($(this).attr("data-id"));
+  $.post({ url: `/posts/${id}/add_to_favorites`,
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+  });
+  $(this).tooltip("disable");
+  if ($(this).hasClass("far")) { // Favorite
+    $(this).addClass("fas");
+    $(this).removeClass("far");
+    $(this).attr("title", "Unfavorite post");
+    $(this).attr("data-original-title", "Unfavorite post");
+  } else if ($(this).hasClass("fas")) { // Unfavorite
+    $(this).addClass("far");
+    $(this).removeClass("fas");
+    $(this).attr("title", "Favorite post");
+    $(this).attr("data-original-title", "Favorite post");
+  }
+  $(this).toggleClass("favorited");
+  $(this).tooltip("enable");
+  $(this).tooltip('hide');
 }
 
 function follow_user() {

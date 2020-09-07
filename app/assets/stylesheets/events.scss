@@ -462,6 +462,9 @@ ul {
   font-size: 14px;
   line-height: 1.5rem;
 }
+.event-organizers a:hover {
+  text-decoration: underline;
+}
 @media screen and (min-width: 800px) {
   .event-organizers span,
   .event-organizers a {
@@ -842,8 +845,8 @@ ul {
 }
 
 .event-thumbnail-preview-wrapper {
-  width: 450px;
-  height: 200px;
+  max-width: 450px;
+  max-height: 200px;
   position: relative;
   overflow: hidden;
   border: 1px solid #ccc;

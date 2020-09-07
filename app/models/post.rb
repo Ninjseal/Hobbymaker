@@ -11,10 +11,20 @@ class Post < ApplicationRecord
 
   validates_presence_of :title
 
+  has_attached_file :thumbnail, default_url: :default_thumbnail_url, url: "/system/:hash.:extension",
+  hash_secret: "afdf5183cad5af9973413be08fd07e7ba9749d18de8f6cd15d6feee06bcc985819c0d4cf2d3d62c72d9a26bb1d6688cf6cfc1b1dfdb083886dacec5a7b1ae827"
+  validates_attachment_content_type :thumbnail, content_type: /\Aimage\/.*\z/
+
   has_rich_text :content
 
   def is_favored_by?(user)
     Favorite.exists?(user_id: user.id, favorite_item_id: self.id, favorite_item_type: "post")
   end
+
+  private
+
+    def default_thumbnail_url
+      "default-post-thumb.jpg"
+    end
 
 end

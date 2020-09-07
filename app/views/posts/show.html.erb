@@ -1,0 +1,32 @@
+<%= content_tag(:div, class: "show-post-wrapper") do %>
+  <%= content_tag(:header, class: "post-header") do %>
+    <%= content_tag(:div, class: "post-interest") do %>
+      <%= link_to(@post.interest.name, root_path) %>
+    <% end %>
+    <%= content_tag(:h1, @post.title, class: "post-title") %>
+    <%= content_tag(:div, class: "post-meta") do %>
+      <%= content_tag(:cite, class: "post-meta-info") do %>
+        <%= content_tag(:span, class: "post-author") do %>
+          <%= 'By' %>
+          <%= link_to(@post.creator.name, user_profile_url(@post.creator)) %>
+        <% end %>
+        <%= content_tag(:time, format_date(@post.created_at), class: "post-date", datetime: date_to_iso8601(@post.created_at)) %>
+      <% end %>
+      <%= content_tag(:div, class: "btn-like-post-show") do %>
+        <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
+          <% if is_favored?(@post) %>
+            <%= icon("fas", "heart", class: "icon-heart favorited", title: 'Unfavorite post', data: { id: @post.id, toggle: "tooltip", placement: "top" }) %>
+          <% else %>
+            <%= icon("far", "heart", class: "icon-heart", title: 'Favorite post', data: { id: @post.id, toggle: "tooltip", placement: "top" }) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if @post.thumbnail.exists? %>
+      <%= content_tag(:div, class: "post-img-container") do %>
+        <%= image_tag(@post.thumbnail.url, class: "post-img img-fluid") %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:article, @post.content, class: "post-content")%>
+<% end %>

@@ -1,0 +1,35 @@
+<%= content_tag(:div, class: "row") do %>
+  <%= content_tag(:div, class: "create-post-box") do %>
+    <%= content_tag(:h2, 'New Post', class: "themed-text") %>
+    <%= content_tag(:fieldset, class: "create-post-form") do %>
+      <%= content_tag(:p, 'Thumbnail Preview', style: "margin-bottom: 0.5rem;") %>
+      <%= content_tag(:div, class: "post-thumbnail-preview-wrapper", title: 'Post Thumbnail') do %>
+        <%= image_tag(@post.thumbnail.url, id: "post-thumbnail-preview", class: "img-fluid") %>
+      <% end %>
+      <%= form_for(@post, url: posts_path, method: :post) do |f| %>
+        <%= content_tag(:div, class: "field custom-file") do %>
+          <%= f.label :thumbnail, "Post Thumbnail", class: "custom-file-label" %>
+          <%= f.file_field :thumbnail, class: "custom-file-input", accept: "image/*" %>
+        <% end %>
+        <%= button_tag(type: "button", id: "post-thumbnail-reset", class: "btn btn-sm btn-outline-danger", disabled: true, title: "Clear thumbnail", data: { toggle: 'tooltip', placement: 'top' }) do %>
+          <%= ion_icon('android-close', 'aria-hidden': 'true') %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :title %>
+          <%= f.text_field :title, class: "form-control", autofocus: true, required: true, placeholder: "Enter post title" %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :interest %>
+          <%= f.collection_select :interest_id, Interest.all, :id, :name, { prompt: "Select Interest" }, { class: "custom-select" } %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :content %>
+          <%= f.rich_text_area :content, required: true %>
+        <% end %>
+        <%= content_tag(:div, class: "actions mt-4") do %>
+          <%= f.submit "Publish Post", class: "submit-button-lg" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

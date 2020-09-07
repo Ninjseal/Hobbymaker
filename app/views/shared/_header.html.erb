@@ -16,6 +16,11 @@
           <%= ion_icon 'android-calendar', text: content_tag(:span, "Events") %>
         <% end -%>
       <% end -%>
+      <%= content_tag(:li, class: nav_item_class(controller_inquiry.posts? && !action_inquiry.new?)) do %>
+        <%= link_to(posts_path, class: "nav-link") do %>
+          <%= ion_icon 'ios-paper-outline', text: content_tag(:span, "Posts") %>
+        <% end -%>
+      <% end -%>
       <%= content_tag(:li, class: nav_item_class(controller_inquiry.events? && action_inquiry.new?)) do %>
         <%= link_to(new_event_path, class: "nav-link") do %>
           <%= ion_icon 'plus', text: content_tag(:span, "Create Event") %>
@@ -24,6 +29,11 @@
       <%= content_tag(:li, class: nav_item_class(controller_inquiry.polls? && action_inquiry.new?)) do %>
         <%= link_to(new_poll_path, class: "nav-link") do %>
           <%= ion_icon 'plus', text: content_tag(:span, "Create Poll") %>
+        <% end -%>
+      <% end -%>
+      <%= content_tag(:li, class: nav_item_class(controller_inquiry.posts? && action_inquiry.new?)) do %>
+        <%= link_to(new_post_path, class: "nav-link") do %>
+          <%= ion_icon 'plus', text: content_tag(:span, "Create Post") %>
         <% end -%>
       <% end -%>
     <% end -%>
