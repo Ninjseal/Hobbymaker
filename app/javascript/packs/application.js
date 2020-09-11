@@ -12,8 +12,11 @@ require("trix")
 require("@rails/actiontext")
 require("chartkick")
 require("chart.js")
+require("select2/dist/css/select2")
+require("select2-bootstrap-theme/dist/select2-bootstrap")
 
 import '../trix-editor-overrides'
+import Select2 from "select2";
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -54,6 +57,7 @@ document.addEventListener('turbolinks:load', () => {
   $("#event-thumbnail-reset").click(clear_event_thumbnail);
   default_event_thumbnail_src = $('#event-thumbnail-preview').attr('src');
   // New Post
+  $("#post_interest_ids").select2({ theme: "bootstrap", placeholder: "Select Interests", allowClear: true });
   $("#post_thumbnail").change(selected_post_thumbnail);
   $("#post-thumbnail-reset").click(clear_post_thumbnail);
   default_post_thumbnail_src = $('#post-thumbnail-preview').attr('src');

@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   private
 
     def create_params
-      params.require(:post).permit(:thumbnail, :title, :interest_id, :content)
+      params.require(:post).permit(:thumbnail, :title, :content, interest_ids: [])
     end
 
     def init_record
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
     end
 
     def load_record
-      @post = Post.where(id: params[:id]).first
+      @post = Post.includes(:interests).where(id: params[:id]).first
       return not_found unless @post.present?
     end
 

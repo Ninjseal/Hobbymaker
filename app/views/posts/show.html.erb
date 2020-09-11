@@ -1,8 +1,6 @@
 <%= content_tag(:div, class: "show-post-wrapper") do %>
   <%= content_tag(:header, class: "post-header") do %>
-    <%= content_tag(:div, class: "post-interest") do %>
-      <%= link_to(@post.interest.name, root_path) %>
-    <% end %>
+    <%= get_interests(@post) %>
     <%= content_tag(:h1, @post.title, class: "post-title") %>
     <%= content_tag(:div, class: "post-meta") do %>
       <%= content_tag(:cite, class: "post-meta-info") do %>

@@ -109,17 +109,17 @@ ul {
   line-height: 1.2941176;
 }
 
-.post-header .post-interest {
+.post-header .post-interests {
   margin-bottom: 1.2592593em;
   letter-spacing: .1rem;
   text-transform: uppercase;
   font-family: 'Open Sans', sans-serif;
 }
-.post-header .post-interest a {
+.post-header .post-interests a {
   color: inherit;
   text-decoration: none;
 }
-.post-header .post-interest a:hover {
+.post-header .post-interests a:hover {
   text-decoration: underline;
 }
 .post-header .post-title {
@@ -155,7 +155,7 @@ ul {
     font-size: 38px;
     line-height: 1.2631579;
   }
-  .post-header .post-interest {
+  .post-header .post-interests {
     line-height: 1.2631579;
     margin-bottom: 1.7368421em;
   }
@@ -425,4 +425,20 @@ ul {
   animation: big-pulse 0.4s;
   animation-timing-function: ease-in;
   -webkit-animation-timing-function: ease-out;
+}
+
+.select2-selection__rendered {
+  font-size: 15px;
+  color: #495057;
+}
+.select2-container--bootstrap.select2-container--focus .select2-selection,
+.select2-container--bootstrap.select2-container--open .select2-selection {
+  border-color: rgba(245, 165, 117, 0.7) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5) !important;
+  outline: 0 none !important;
+}
+.select2-container--bootstrap.select2-container--open.select2-container--above .select2-selection {
+  border-color: rgba(245, 165, 117, 0.7) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5) !important;
+  outline: 0 none !important;
 }
