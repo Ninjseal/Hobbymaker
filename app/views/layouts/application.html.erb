@@ -13,10 +13,6 @@
   <body cz-shortcut-listen="true">
     <%= render partial: "shared/header" %>
     <%= content_tag(:main, class: "container", role: "main") do %>
-      <!-- <div id="hello">
-        <blog-post title="Hello"></blog-post>
-        <app :message="<#%= "Hello".to_json -%>"></app>
-      </div> -->
       <%= yield %>
     <% end -%>
     <%= yield :charts_js %>

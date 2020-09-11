@@ -1,36 +1,30 @@
-<%= content_tag(:div, class: "col mb-4 post-item") do %>
-  <%= content_tag(:div, class: "card", style: "max-width: 540px;") do %>
-    <%= content_tag(:div, class: "row no-gutters") do %>
-      <%= content_tag(:div, class: "col-md-6") do %>
-        <%= link_to(post_url(post)) do %>
-          <%= image_tag(post.thumbnail.url, class: "card-img post-img") %>
+<%= content_tag(:div, class: "post-item") do %>
+  <%= content_tag(:div, class: "post-details") do %>
+    <%= content_tag(:h3, class: "post-title") do %>
+      <%= link_to(post.title, post_url(post), title: post.title, target: "_blank") %>
+    <% end %>
+    <%= content_tag(:div, class: "post-meta") do %>
+      <%= content_tag(:div, class: "post-meta-info") do %>
+        <%= content_tag(:span, class: "post-author") do %>
+          <%= 'By' %>
+          <%= link_to(post.creator.name, user_profile_url(post.creator)) %>
         <% end %>
+        <%= content_tag(:time, format_date(post.created_at), class: "post-date", datetime: date_to_iso8601(post.created_at)) %>
       <% end %>
-      <%= content_tag(:div, class: "col-md-6") do %>
-        <%= content_tag(:div, class: "card-body post-details") do %>
-          <%= link_to(post_url(post)) do %>
-            <%= content_tag(:h3, post.title, class: "card-title post-title") %>
-          <% end %>
-        <% end %>
-        <%= content_tag(:div, class: "card-footer post-meta") do %>
-          <%= content_tag(:div, class: "post-meta-info") do %>
-            <%= content_tag(:span, class: "post-author") do %>
-              <%= 'By' %>
-              <%= link_to(post.creator.name, user_profile_url(post.creator)) %>
-            <% end %>
-            <%= content_tag(:time, format_date(post.created_at), class: "post-date", datetime: date_to_iso8601(post.created_at)) %>
-          <% end %>
-          <%= content_tag(:div, class: "btn-like-post") do %>
-            <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
-              <% if is_favored?(post) %>
-                <%= icon("fas", "heart", class: "icon-heart favorited", title: 'Unfavorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
-              <% else %>
-                <%= icon("far", "heart", class: "icon-heart", title: 'Favorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
-              <% end %>
-            <% end %>
+      <%= content_tag(:div, class: "btn-like-post") do %>
+        <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
+          <% if is_favored?(post) %>
+            <%= icon("fas", "heart", class: "icon-heart favorited", title: 'Unfavorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
+          <% else %>
+            <%= icon("far", "heart", class: "icon-heart", title: 'Favorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
           <% end %>
         <% end %>
       <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "post-thumb") do %>
+    <%= link_to(post_url(post), target: "_blank") do %>
+      <%= image_tag(post.thumbnail.url, class: "post-img") %>
     <% end %>
   <% end %>
 <% end %>
