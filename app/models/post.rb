@@ -1,5 +1,4 @@
 class Post < ApplicationRecord
-  belongs_to :interest
   belongs_to :creator, class_name: "User", foreign_key: :created_by
   has_many :comments, dependent: :destroy
 
@@ -8,6 +7,8 @@ class Post < ApplicationRecord
 
   has_many :reported_by_reports, as: :reported_item, foreign_key: :reported_item_id, foreign_type: :reported_item_type, class_name: 'Report'
   has_many :reported_by, through: :reported_by_reports, source: :owner
+
+  has_and_belongs_to_many :interests
 
   validates_presence_of :title
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_103106) do
+ActiveRecord::Schema.define(version: 2020_09_11_125301) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -115,6 +115,12 @@ ActiveRecord::Schema.define(version: 2020_09_01_103106) do
     t.index ["start_date"], name: "index_events_on_start_date"
   end
 
+  create_table "events_interests", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "interest_id", null: false
+    t.index ["event_id", "interest_id"], name: "index_events_interests_on_event_id_and_interest_id", unique: true
+  end
+
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "favorite_item_id", null: false
@@ -147,6 +153,12 @@ ActiveRecord::Schema.define(version: 2020_09_01_103106) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "interests_posts", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "interest_id", null: false
+    t.integer "post_id", null: false
+    t.index ["interest_id", "post_id"], name: "index_interests_posts_on_interest_id_and_post_id", unique: true
   end
 
   create_table "interests_users", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -206,7 +218,6 @@ ActiveRecord::Schema.define(version: 2020_09_01_103106) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "interest_id", null: false
     t.integer "created_by", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

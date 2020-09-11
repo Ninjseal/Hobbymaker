@@ -10,6 +10,8 @@ class Event < ApplicationRecord
   has_many :reported_by_reports, as: :reported_item, foreign_key: :reported_item_id, foreign_type: :reported_item_type, class_name: 'Report'
   has_many :reported_by, through: :reported_by_reports, source: :owner
 
+  has_and_belongs_to_many :interests
+
   belongs_to :city, optional: true
 
   enum kind: { online: 0, venue: 1 }
