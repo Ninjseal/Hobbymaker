@@ -19,6 +19,10 @@ module ApplicationHelper
     end
   end
 
+  def date_to_iso8601(date)
+    date.strftime('%FT%T%:z')
+  end
+
   def link_to_add_fields(name = nil, f = nil, association = nil, options = nil, html_options= nil, &block)
     f, association, options, html_options = name, f, association, options if block_given?
 

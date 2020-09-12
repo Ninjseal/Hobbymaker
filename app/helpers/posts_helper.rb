@@ -1,11 +1,7 @@
 module PostsHelper
 
-  def format_date(date)
+  def format_post_date(date)
     date.strftime("%B %-d, %Y")
-  end
-
-  def date_to_iso8601(date)
-    date.strftime('%FT%T%:z')
   end
 
   def is_favored?(post)

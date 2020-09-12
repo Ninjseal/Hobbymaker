@@ -8,7 +8,7 @@
           <%= 'By' %>
           <%= link_to(@post.creator.name, user_profile_url(@post.creator)) %>
         <% end %>
-        <%= content_tag(:time, format_date(@post.created_at), class: "post-date", datetime: date_to_iso8601(@post.created_at)) %>
+        <%= content_tag(:time, format_post_date(@post.created_at), class: "post-date", datetime: date_to_iso8601(@post.created_at)) %>
       <% end %>
       <%= content_tag(:div, class: "btn-like-post-show") do %>
         <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>

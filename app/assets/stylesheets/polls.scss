@@ -229,3 +229,41 @@
   margin: 20px 0 15px;
   line-height: 1;
 }
+
+.poll-details {
+  text-align: left;
+  width: 100%;
+  margin: 10px 0 0 0;
+  padding: 10px 0 0 0;
+  flex-direction: column;
+  display: flex;
+  justify-content: space-between;
+}
+.poll-date {
+  color: #ED755A;
+}
+.poll-date span {
+  font-size: .9rem;
+  margin-right: .5rem;
+}
+.poll-date time {
+  color: #8a8a8a;
+  font-size: .8rem;
+  letter-spacing: 0.1px;
+  line-height: 28px;
+}
+.poll-owner {
+  font-family: 'Open Sans', sans-serif;
+  font-size: .95rem;
+  color: #252a40;
+}
+.poll-owner span {
+  margin-right: .3rem;
+}
+.poll-owner a {
+  color: inherit;
+  text-decoration: none;
+}
+.poll-owner a:hover {
+  text-decoration: underline;
+}
