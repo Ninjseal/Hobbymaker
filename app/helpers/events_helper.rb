@@ -70,4 +70,14 @@ module EventsHelper
     end
   end
 
+  def get_event_interests(event)
+    num_of_interests = event.interests.count
+    content_tag(:span) do
+      event.interests.each_with_index do |interest, idx|
+        concat(link_to(interest.name, root_path))
+        concat(", ") unless idx == num_of_interests - 1
+      end
+    end
+  end
+
 end

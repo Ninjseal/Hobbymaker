@@ -19,6 +19,10 @@
           <%= f.text_field :name, class: "form-control", autofocus: true, required: true %>
         <% end %>
         <%= content_tag(:div, class: "field") do %>
+          <%= f.label :interests %>
+          <%= f.collection_select :interest_ids, Interest.all, :id, :name, {}, { class: "custom-select" , multiple: true } %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
           <%= f.label :start_date, "Start Time" %>
           <%= f.datetime_field :start_date, min: Date.today.beginning_of_day, class: "form-control", required: true %>
         <% end %>

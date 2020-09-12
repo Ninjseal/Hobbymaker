@@ -739,11 +739,50 @@ ul {
   padding-top: 8px;
   padding-right: 5px;
 }
+.event-interests {
+  width: 100%;
+}
+.event-interests .event-interests-head {
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+.event-interests .event-interests-head h3 {
+  margin: 0;
+  line-height: 20px;
+  color: #2e363f;
+  text-rendering: optimizelegibility;
+  font-size: 16px;
+  display: block;
+  text-transform: none;
+}
+.event-interests .event-interests-text {
+  color: #565c68;
+}
+.event-interests .event-interests-text span {
+  padding: 5px 0;
+  margin: 0;
+  font-size: 14px;
+}
+.event-interests .event-interests-text i {
+  padding-top: 8px;
+  padding-right: 5px;
+  font-size: 1.1rem;
+}
+.event-interests .event-interests-text a {
+  color: inherit;
+  text-decoration: none;
+}
+.event-interests .event-interests-text a:hover {
+  text-decoration: underline;
+}
 @media screen and (max-width: 799px) {
   .event-location .event-location-text span {
     letter-spacing: normal;
   }
   .event-date .event-date-text span {
+    letter-spacing: normal;
+  }
+  .event-interests .event-interests-text span {
     letter-spacing: normal;
   }
 }
@@ -853,4 +892,20 @@ ul {
   background-position: top;
   background-size: cover;
   margin-bottom: 20px;
+}
+
+.select2-selection__rendered {
+  font-size: 1rem;
+  color: #495057;
+}
+.select2-container--bootstrap.select2-container--focus .select2-selection,
+.select2-container--bootstrap.select2-container--open .select2-selection {
+  border-color: rgba(245, 165, 117, 0.7) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5) !important;
+  outline: 0 none !important;
+}
+.select2-container--bootstrap.select2-container--open.select2-container--above .select2-selection {
+  border-color: rgba(245, 165, 117, 0.7) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5) !important;
+  outline: 0 none !important;
 }

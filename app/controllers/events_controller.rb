@@ -81,18 +81,18 @@ class EventsController < ApplicationController
   private
 
     def create_params
-      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :city_id, :location, :description)
+      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :description, interest_ids: [])
     end
 
-    def create_params_online
-      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :description)
+    def create_params_venue
+      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :city_id, :location, :description, interest_ids: [])
     end
 
     def init_record
       if params[:event][:kind] == "online"
-        @event = Event.new(create_params_online)
-      else
         @event = Event.new(create_params)
+      else
+        @event = Event.new(create_params_venue)
       end
       @event.organizers << current_user
     end

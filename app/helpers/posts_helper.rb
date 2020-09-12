@@ -13,10 +13,10 @@ module PostsHelper
     post.is_favored_by?(current_user)
   end
 
-  def get_interests(post)
-    num_of_interests = @post.interests.count
+  def get_post_interests(post)
+    num_of_interests = post.interests.count
     content_tag(:div, class: "post-interests") do
-      @post.interests.each_with_index do |interest, idx|
+      post.interests.each_with_index do |interest, idx|
         concat(link_to(interest.name, root_path))
         concat(", ") unless idx == num_of_interests - 1
       end

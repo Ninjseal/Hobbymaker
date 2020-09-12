@@ -60,6 +60,15 @@
               <%= content_tag(:span, detailed_location(@event)) %>
             <% end %>
           <% end %>
+          <%= content_tag(:div, class: "event-interests") do %>
+            <%= content_tag(:div, class: "event-interests-head") do %>
+              <% content_tag(:h3, 'Interests') %>
+            <% end %>
+            <%= content_tag(:div, class: "event-interests-text") do %>
+              <%= icon("fab", "medapps") %>
+              <%= get_event_interests(@event) %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
