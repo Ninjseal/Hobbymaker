@@ -27,4 +27,5 @@
     <% end %>
   <% end %>
   <%= content_tag(:article, @post.content, class: "post-content")%>
+  <%= render partial: "comments", locals: { post: @post } %>
 <% end %>

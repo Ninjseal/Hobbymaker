@@ -1,0 +1,16 @@
+<%= content_tag(:div, class: "comments-container") do %>
+  <% if post.disable_comments? %>
+    <%= content_tag(:h3, 'Comments are disabled for this post.') %>
+  <% else %>
+    <%= content_tag(:div, class: "comments-header") do %>
+      <%= content_tag(:h3, 'Leave a comment') %>
+    <% end %>
+    <% post.comments.each do |comment| %>
+      <%= content_tag(:div, class: "comment container-fluid") do %>
+        <%= content_tag(:div, class: "row row-comment") do %>
+
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
