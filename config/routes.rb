@@ -24,5 +24,9 @@ Rails.application.routes.draw do
   post '/regions/:id', to: 'application#fetch_regions', as: 'fetch_regions'
   post '/cities/:id', to: 'application#fetch_cities', as: 'fetch_cities'
 
+  get '/admin/send-report-notification/:id' , to: 'admin/reports#report_notification', as: 'report_notification'
+  get '/admin/send-mail-report/:id', to: 'admin/reports#mail', as: 'mail'
+  post '/admin/reports/:id/reject', to: 'admin/reports#reject', as: 'reject_report'
+
   root to: 'home#index'
 end

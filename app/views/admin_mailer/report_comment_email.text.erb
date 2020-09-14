@@ -1,0 +1,11 @@
+Dear <%= @user.name %>,
+
+Your Comment has been reported for <%= @reason %>.
+
+Comment Body: <%= @report.reported_item.content %>
+
+Report Message: <%= @report.message %>
+
+<% if @message.present? %>
+Admin Message: <%= @message %>
+<% end %>

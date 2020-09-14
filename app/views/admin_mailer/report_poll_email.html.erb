@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Dear <%= @user.name %>,</p>
+    <br/>
+    <p>Your <%= link_to('Poll', poll_url(@report.reported_item_id)).html_safe %> has been reported for <%= @reason %>.</p>
+
+    <p>Report Message: <%= @report.message %></p>
+
+    <% if @message.present? %>
+      <p>Admin Message: <%= @message %></p>
+    <% end %>
+  </body>
+</html>

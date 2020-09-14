@@ -18,6 +18,7 @@ gem 'activeadmin_addons'
 gem 'font-awesome-sass'
 gem 'trix'
 gem 'chartkick'
+gem 'ransack'
 
 # Omniauth - Google API
 gem 'omniauth-google-oauth2'
