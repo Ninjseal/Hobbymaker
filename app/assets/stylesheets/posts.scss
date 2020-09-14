@@ -321,22 +321,30 @@ ul {
 }
 
 .post-item .post-date {
-
 }
 
-.post-img {
+.post-item .post-img {
   border-radius: inherit;
   height: 180px;
   display:block;
 }
 @media screen and (max-width: 767px) {
-  .post-img {
+  .post-item .post-img {
     height: 200px;
   }
 }
 
 .btn-like-post {
   z-index: 9;
+  top: 52%;
+  position: absolute;
+  right: 5%;
+  z-index: 9;
+}
+@media screen and (max-width: 767px) {
+  .btn-like-post {
+    top: 58%;
+  }
 }
 .btn-like-post i {
   z-index: 0;

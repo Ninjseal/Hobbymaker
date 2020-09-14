@@ -15,5 +15,14 @@
         <%= content_tag(:small, format_post_date(post.created_at), class: "text-muted post-date") %>
       <% end %>
     <% end %>
+    <%= content_tag(:div, class: "btn-like-post") do %>
+      <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
+        <% if is_favored?(post) %>
+          <%= icon("fas", "heart", class: "icon-heart favorited", title: 'Unfavorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
+        <% else %>
+          <%= icon("far", "heart", class: "icon-heart", title: 'Favorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
+        <% end %>
+      <% end %>
+    <% end %>
   <% end %>
 <% end %>
