@@ -10,8 +10,26 @@ class Poll < ApplicationRecord
 
   validates_presence_of :question
 
+  after_create :notify_followers
+  before_destroy :destroy_notifications
+
   def voted_by?(user)
     PollVote.exists?(user_id: user.id, poll_id: self.id)
   end
+
+  def notifications
+    @notifications ||= Notification.where(params: { poll: self })
+  end
+
+  private
+
+    def notify_followers
+      users = (self.owner.followers - self.owner).flatten
+      PollNotification.with(poll: self).deliver_later(users)
+    end
+
+    def destroy_notifications
+      notifications.destroy_all
+    end
 
 end

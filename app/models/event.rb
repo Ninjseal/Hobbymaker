@@ -34,6 +34,9 @@ class Event < ApplicationRecord
 
   has_rich_text :description
 
+  after_create :notify_interested_users_and_followers
+  before_destroy :destroy_notifications
+
   def country
     self.city.region.country
   end
@@ -54,6 +57,10 @@ class Event < ApplicationRecord
     self.start_date.to_date == self.end_date.to_date
   end
 
+  def notifications
+    @notifications ||= Notification.where(params: { poll: self })
+  end
+
   private
 
     def default_thumbnail_url
@@ -65,6 +72,15 @@ class Event < ApplicationRecord
         self.errors.add(:location, "can't be blank") if self.location.nil?
         self.errors.add(:city, "can't be blank") if self.city_id.nil?
       end
+    end
+
+    def notify_interested_users_and_followers
+      users = ((self.interests.map { |i| i.users } | self.organizers.map { |o| o.followers }) - self.organizers).flatten
+      EventNotification.with(event: self).deliver_later(users)
+    end
+
+    def destroy_notifications
+      notifications.destroy_all
     end
 
 end

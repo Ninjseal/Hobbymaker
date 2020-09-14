@@ -18,14 +18,30 @@ class Post < ApplicationRecord
 
   has_rich_text :content
 
+  after_create :notify_interested_users_and_followers
+  before_destroy :destroy_notifications
+
   def is_favored_by?(user)
     Favorite.exists?(user_id: user.id, favorite_item_id: self.id, favorite_item_type: "post")
+  end
+
+  def notifications
+    @notifications ||= Notification.where(params: { post: self })
   end
 
   private
 
     def default_thumbnail_url
       "default-post-thumb.jpg"
+    end
+
+    def notify_interested_users_and_followers
+      users = ((self.interests.map { |i| i.users } | self.creator.followers) - self.creator).flatten
+      PostNotification.with(post: self).deliver_later(users)
+    end
+
+    def destroy_notifications
+      notifications.destroy_all
     end
 
 end

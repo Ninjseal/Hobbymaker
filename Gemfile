@@ -19,6 +19,7 @@ gem 'font-awesome-sass'
 gem 'trix'
 gem 'chartkick'
 gem 'ransack'
+gem 'noticed'
 
 # Omniauth - Google API
 gem 'omniauth-google-oauth2'

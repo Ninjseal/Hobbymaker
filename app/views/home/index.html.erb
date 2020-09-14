@@ -1,1 +1,6 @@
 <h1>Home#index</h1>
+<%= content_tag(:div, class: "row") do %>
+  <% @notifications.each do |notification| %>
+    <%= content_tag(:p, notification.to_notification.output) %>
+  <% end %>
+<% end %>

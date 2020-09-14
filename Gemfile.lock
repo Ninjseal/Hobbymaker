@@ -118,11 +118,16 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
     execjs (2.7.0)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.13.1-x64-mingw32)
+    ffi-compiler (1.0.1)
+      ffi (>= 1.0.0)
+      rake
     font-awesome-sass (5.13.0)
       sassc (>= 1.11)
     font-ionicons-rails (2.0.1.6)
@@ -152,6 +157,16 @@ GEM
       activesupport (>= 4.1)
     hashie (4.1.0)
     highline (2.0.3)
+    http (4.4.1)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 2.2)
+      http-parser (~> 1.2.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    http-form_data (2.3.0)
+    http-parser (1.2.1)
+      ffi-compiler (>= 1.0, < 2.0)
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
@@ -211,6 +226,9 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.10-x64-mingw32)
       mini_portile2 (~> 2.4.0)
+    noticed (1.2.15)
+      http (>= 4.0.0)
+      rails (>= 6.0.0)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -353,6 +371,9 @@ GEM
     tzinfo-data (1.2020.1)
       tzinfo (>= 1.0.0)
     uber (0.1.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.7-x64-mingw32)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.4)
@@ -399,6 +420,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mysql2 (>= 0.4.4)
+  noticed
   omniauth-google-oauth2
   paperclip (~> 6.0.0)
   progress_bar

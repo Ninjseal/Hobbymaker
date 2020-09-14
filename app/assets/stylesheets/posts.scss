@@ -430,17 +430,20 @@ ul {
 .select2-selection__rendered {
   font-size: 1rem;
   color: #495057;
+  width: 100%;
 }
 .select2-container--bootstrap.select2-container--focus .select2-selection,
 .select2-container--bootstrap.select2-container--open .select2-selection {
   border-color: rgba(245, 165, 117, 0.7) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5) !important;
   outline: 0 none !important;
+  width: 100%;
 }
 .select2-container--bootstrap.select2-container--open.select2-container--above .select2-selection {
   border-color: rgba(245, 165, 117, 0.7) !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5) !important;
   outline: 0 none !important;
+  width: 100%;
 }
 
 .comments-container {

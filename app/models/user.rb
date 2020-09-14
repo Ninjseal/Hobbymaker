@@ -45,6 +45,8 @@ class User < ApplicationRecord
   hash_secret: "48fd698bbcff86f6d29227cc22eedc5b1d10eacb27d5e2dfa1e80cf244ab6c12505fd24587f61095e46b90d08aea4164c2b90fdb29f569d1ae7e010b4f811235"
   validates_attachment_content_type :profile_photo, content_type: /\Aimage\/.*\z/
 
+  has_many :notifications, as: :recipient
+
   def self.from_omniauth(auth)
     user = where(email: auth.info.email).first
     if user.present?
