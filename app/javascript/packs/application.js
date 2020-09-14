@@ -52,6 +52,7 @@ document.addEventListener('turbolinks:load', () => {
   $(".btn-participate").click(join_event);
   // New Event
   $("#event_interest_ids").select2({ theme: "bootstrap", placeholder: "Select Interests", allowClear: true });
+  $("#event_organizer_ids").select2({ theme: "bootstrap", placeholder: "Select Organizers", allowClear: true });
   $("#event_kind").change(changed_event_kind);
   $("#event_country_id").change(event_fetch_regions);
   $("#event_thumbnail").change(selected_event_thumbnail);

@@ -24,8 +24,8 @@ class Poll < ApplicationRecord
   private
 
     def notify_followers
-      users = (self.owner.followers - self.owner).flatten
-      PollNotification.with(poll: self).deliver_later(users)
+      users = self.owner.followers - self.owner
+      PollNotification.with(poll: self).deliver_later(users) if users.present?
     end
 
     def destroy_notifications

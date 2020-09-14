@@ -81,11 +81,11 @@ class EventsController < ApplicationController
   private
 
     def create_params
-      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :description, interest_ids: [])
+      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :description, interest_ids: [], organizer_ids: [])
     end
 
     def create_params_venue
-      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :city_id, :location, :description, interest_ids: [])
+      params.require(:event).permit(:thumbnail, :name, :start_date, :end_date, :kind, :city_id, :location, :description, interest_ids: [], organizer_ids: [])
     end
 
     def init_record

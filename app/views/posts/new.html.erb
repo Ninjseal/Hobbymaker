@@ -26,6 +26,10 @@
           <%= f.label :content %>
           <%= f.rich_text_area :content, required: true %>
         <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.check_box :disable_comments %>
+          <%= f.label :disable_comments, 'Disable comments' %>
+        <% end %>
         <%= content_tag(:div, class: "actions mt-4") do %>
           <%= f.submit "Publish Post", class: "submit-button-lg" %>
         <% end %>

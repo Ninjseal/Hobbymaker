@@ -19,6 +19,10 @@
           <%= f.text_field :name, class: "form-control", autofocus: true, required: true %>
         <% end %>
         <%= content_tag(:div, class: "field") do %>
+          <%= f.label :organizers, "Add other organizers" %>
+          <%= f.collection_select :organizer_ids, User.all.without(current_user), :id, :name, {}, { class: "custom-select" , multiple: true } %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
           <%= f.label :interests %>
           <%= f.collection_select :interest_ids, Interest.all, :id, :name, {}, { class: "custom-select" , multiple: true } %>
         <% end %>

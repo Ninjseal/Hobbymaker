@@ -36,8 +36,8 @@ class Post < ApplicationRecord
     end
 
     def notify_interested_users_and_followers
-      users = ((self.interests.map { |i| i.users } | self.creator.followers) - self.creator).flatten
-      PostNotification.with(post: self).deliver_later(users)
+      users = (self.interests.map { |i| i.users } | self.creator.followers).flatten - self.creator
+      PostNotification.with(post: self).deliver_later(users) if users.present?
     end
 
     def destroy_notifications

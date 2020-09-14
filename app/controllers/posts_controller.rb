@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   private
 
     def create_params
-      params.require(:post).permit(:thumbnail, :title, :content, interest_ids: [])
+      params.require(:post).permit(:thumbnail, :title, :content, :disable_comments, interest_ids: [])
     end
 
     def init_record
