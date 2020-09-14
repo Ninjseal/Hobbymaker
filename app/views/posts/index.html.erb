@@ -1,6 +1,6 @@
 <%= content_tag(:div, class: "index-post-box") do %>
   <%= content_tag(:div, "All Posts", class: "post-list-title") %>
-  <%= content_tag(:div, class: "post-list-wrapper") do %>
+  <%= content_tag(:div, class: "row") do %>
     <%= render(partial: "post", collection: @posts) %>
   <% end %>
 <% end %>
