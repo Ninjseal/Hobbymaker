@@ -3,6 +3,29 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def report_item
+    @report = Report.new(report_params)
+    @report.owner = current_user
+    @report.status = "pending"
+    @report.reported_item_id = params[:id]
+    @report.save
+    case params[:report][:reported_item_type]
+    when "User"
+      redirect_to user_profile_path(params[:id])
+    when "Comment"
+      post = Comment.where(id: params[:id]).first.post
+      redirect_to post_path(post.id)
+    when "Post"
+      redirect_to post_path(params[:id])
+    when "Poll"
+      redirect_to poll_path(params[:id])
+    when "Event"
+      redirect_to event_path(params[:id])
+    else
+      redirect_to root_path
+    end
+  end
+
   def fetch_regions
     country = Country.where(id: params[:id]).first
     resource = params[:resource]
@@ -46,6 +69,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_out_path_for(resource_or_scope)
     new_session_path(User)
+  end
+
+  def report_params
+    params.require(:report).permit(:reported_item_type, :reason, :message)
   end
 
 end

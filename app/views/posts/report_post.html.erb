@@ -1,0 +1,21 @@
+<%= content_tag(:div, class: "row") do %>
+  <%= content_tag(:div, class: "create-report-box") do %>
+    <%= content_tag(:h2, 'Report Post', class: "themed-text") %>
+    <%= content_tag(:fieldset, class: "create-report-form") do %>
+      <%= form_for(@report, url: report_item_path(@post.id), method: :post) do |f| %>
+        <%= hidden_field :report, :reported_item_type, value: "Post" %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :reason %>
+          <%= f.select :reason, Report.reasons.keys.map { |key, val| [key.humanize, key] }, {}, { class: "custom-select" } %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= f.label :message %>
+          <%= f.text_area :message, class: "w-100 form-control" %>
+        <% end %>
+        <%= content_tag(:div, class: "actions mt-4") do %>
+          <%= f.submit "Send Report", class: "submit-button-lg" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

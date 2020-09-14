@@ -78,6 +78,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def report_event
+    @event = Event.where(id: params[:id]).first
+    @report = Report.new
+  end
+
   private
 
     def create_params

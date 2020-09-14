@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :load_record, only: [:show, :add_to_favorites, :add_comment]
+  before_action :load_record, only: [:show, :add_to_favorites, :add_comment, :destroy]
   before_action :init_record, only: [:create]
 
   def index
@@ -31,6 +31,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.destroy
+    redirect_to posts_path
   end
 
   def add_to_favorites
@@ -60,6 +62,16 @@ class PostsController < ApplicationController
     @comment = Comment.where(id: params[:id]).first
     @comment.destroy
     redirect_to post_path(@comment.post)
+  end
+
+  def report_comment
+    @comment = Comment.where(id: params[:id]).first
+    @report = Report.new
+  end
+
+  def report_post
+    @post = Post.where(id: params[:id]).first
+    @report = Report.new
   end
 
   private

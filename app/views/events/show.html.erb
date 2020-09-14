@@ -36,6 +36,13 @@
             <%= content_tag(:div, @event.name, class: "event-description-title") %>
             <%= content_tag(:div, "About this Event", class: "event-description-about") %>
             <%= content_tag(:div, @event.description, class: "event-description-text") %>
+            <% unless @event.organizers.include? current_user %>
+              <%= content_tag(:div, class: "report-event") do %>
+                <%= link_to(report_event_path(@event.id)) do %>
+                  <%= ion_icon 'ios-flag', text: content_tag(:span, "Report") %>
+                <% end %>
+              <% end -%>
+            <% end %>
           <% end %>
         <% end %>
         <%= content_tag(:div, class: "event-info") do %>

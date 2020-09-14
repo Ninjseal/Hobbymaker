@@ -5,4 +5,11 @@
   <% else %>
     <%= render partial: 'poll_vote', locals: { poll: @poll } %>
   <% end %>
+  <% if @poll.owner != current_user %>
+    <%= content_tag(:div, class: "report-poll") do %>
+      <%= link_to(report_poll_path(@poll.id)) do %>
+        <%= ion_icon 'ios-flag', text: content_tag(:span, "Report") %>
+      <% end %>
+    <% end -%>
+  <% end %>
 <% end %>

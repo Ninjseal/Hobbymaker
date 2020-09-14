@@ -28,6 +28,11 @@ class ProfileController < ApplicationController
     end
   end
 
+  def report_user
+    @user = User.where(id: params[:id]).first
+    @report = Report.new
+  end
+
   private
 
     def load_record

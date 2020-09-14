@@ -27,7 +27,18 @@
     <% end %>
   <% end %>
   <%= content_tag(:article, @post.content, class: "post-content")%>
+  <% if @post.creator != current_user %>
+    <%= content_tag(:div, class: "report-post") do %>
+      <%= link_to(report_post_path(@post.id)) do %>
+        <%= ion_icon 'ios-flag', text: content_tag(:span, "Report") %>
+      <% end %>
+    <% end -%>
+  <% else %>
+    <%= content_tag(:div, class: "delete-post") do %>
+      <%= button_to @post, method: :delete, class: 'delete-post-submit', title: 'Delete Post', data: { toggle: "tooltip", placement: "right", confirm: 'Are you sure you want to delete this post?' } do %>
+        <%= ion_icon 'ios-trash' %>
+      <% end %>
+    <% end %>
+  <% end %>
   <%= render partial: "comments", locals: { post: @post } %>
 <% end %>
-<%= content_tag(:div, id: 'report-modal-container') do %>
-<% end -%>

@@ -165,3 +165,38 @@ button.btn-google {
 .hide {
   display: none;
 }
+
+.create-report-box {
+  background: #fff;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  position: relative;
+  display: block;
+  float: none;
+  width: 650px;
+  margin: 30px auto 20px auto;
+  border: 1px solid #d0d0c8;
+  box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  text-align: center;
+}
+@media screen and (max-width: 767px) {
+  .create-report-box {
+    padding: 20px;
+  }
+}
+
+.create-report-box h2 {
+  margin-top: 0;
+  text-rendering: optimizelegibility;
+  line-height: 36px;
+  margin-bottom: 30px;
+}
+
+.create-report-box fieldset {
+  border: none;
+  width: 450px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}

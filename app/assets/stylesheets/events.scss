@@ -909,3 +909,12 @@ ul {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 3px rgba(237, 117, 90, 0.5) !important;
   outline: 0 none !important;
 }
+
+.report-event a {
+  color: #dc3545;
+  font-size: 14px;
+  text-decoration: none;
+}
+.report-event a:hover {
+  text-decoration: underline;
+}

@@ -41,6 +41,11 @@ class PollsController < ApplicationController
     redirect_to poll_url(@poll)
   end
 
+  def report_poll
+    @poll = Poll.where(id: params[:id]).first
+    @report = Report.new
+  end
+
   private
 
     def create_params
