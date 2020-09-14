@@ -9,4 +9,7 @@ class Comment < ApplicationRecord
 
   validates_presence_of :content
 
+  scope :newest_first, -> { order("created_at desc") }
+  scope :not_replies, -> { where(parent: nil) }
+
 end

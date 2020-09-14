@@ -36,7 +36,7 @@ class Post < ApplicationRecord
     end
 
     def notify_interested_users_and_followers
-      users = (self.interests.map { |i| i.users } | self.creator.followers).flatten - self.creator
+      users = (self.interests.map { |i| i.users } | self.creator.followers).flatten.uniq - self.creator
       PostNotification.with(post: self).deliver_later(users) if users.present?
     end
 

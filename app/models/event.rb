@@ -75,7 +75,7 @@ class Event < ApplicationRecord
     end
 
     def notify_interested_users_and_followers
-      users = (self.interests.map { |i| i.users } | self.organizers.map { |o| o.followers }).flatten - self.organizers
+      users = (self.interests.map { |i| i.users } | self.organizers.map { |o| o.followers }).flatten.uniq - self.organizers
       EventNotification.with(event: self).deliver_later(users) if users.present?
     end
 

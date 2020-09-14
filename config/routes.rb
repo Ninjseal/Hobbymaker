@@ -15,7 +15,18 @@ Rails.application.routes.draw do
 
   resources :posts do
     post :add_to_favorites, on: :member
+    post :add_comment, on: :member
   end
+
+  post '/update_comment/:id', to: 'posts#update_comment', as: 'update_comment'
+  delete '/comment/:id', to: 'posts#delete_comment', as: 'comment'
+
+  get '/report_comment/:id', to: 'posts#report_comment', as: 'report_comment'
+  get '/report_post/:id', to: 'posts#report_post', as: 'report_post'
+  get '/report_poll/:id', to: 'polls#report_poll', as: 'report_poll'
+  get '/report_event/:id', to: 'events#report_event', as: 'report_event'
+  get '/report_user/:id', to: 'profile#report_user', as: 'report_user'
+  post '/report_item/:id', to: 'application#report_item', as: 'report_item'
 
   get '/profile/:id', to: 'profile#show', as: 'user_profile'
   post '/follow_user/:id', to: 'profile#follow_user', as: 'follow_user'

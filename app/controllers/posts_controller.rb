@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :load_record, only: [:show, :add_to_favorites]
+  before_action :load_record, only: [:show, :add_to_favorites, :add_comment]
   before_action :init_record, only: [:create]
 
   def index
@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comments = @post.comments.not_replies.newest_first
   end
 
   def new
@@ -43,10 +44,32 @@ class PostsController < ApplicationController
     head :ok
   end
 
+  def add_comment
+    @comment = Comment.new(comment_params)
+    @comment.creator = current_user
+    @comment.post = @post
+    @comment.save
+    redirect_to post_path(@post)
+  end
+
+  def update_comment
+
+  end
+
+  def delete_comment
+    @comment = Comment.where(id: params[:id]).first
+    @comment.destroy
+    redirect_to post_path(@comment.post)
+  end
+
   private
 
     def create_params
       params.require(:post).permit(:thumbnail, :title, :content, :disable_comments, interest_ids: [])
+    end
+
+    def comment_params
+      params.require(:comment).permit(:content)
     end
 
     def init_record
