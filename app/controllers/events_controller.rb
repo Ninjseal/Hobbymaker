@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @similar_events = get_similar_events
   end
 
   def new
@@ -105,6 +106,10 @@ class EventsController < ApplicationController
     def load_record
       @event = Event.with_rich_text_description_and_embeds.where(id: params[:id]).first
       return not_found unless @event.present?
+    end
+
+    def get_similar_events
+      @event.interests.order("created_at DESC").map { |i| i.events }.flatten.uniq.take(3)
     end
 
 end

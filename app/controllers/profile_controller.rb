@@ -1,14 +1,9 @@
 class ProfileController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!
 
-  before_action :load_record, only: [:show, :follow_user, :unfollow_user]
+  before_action :load_record, only: [:show, :follow_user, :unfollow_user, :favorite_posts, :favorite_events]
 
   def show
-    if @user == current_user
-      render 'my_profile'
-    else
-      render 'show'
-    end
   end
 
   def follow_user
@@ -31,6 +26,14 @@ class ProfileController < ApplicationController
   def report_user
     @user = User.where(id: params[:id]).first
     @report = Report.new
+  end
+
+  def favorite_posts
+    
+  end
+
+  def favorite_events
+
   end
 
   private

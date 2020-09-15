@@ -34,6 +34,12 @@ Rails.application.routes.draw do
   post '/report_item/:id', to: 'application#report_item', as: 'report_item'
 
   get '/profile/:id', to: 'profile#show', as: 'user_profile'
+  get '/edit_my_profile', :to => 'profile#edit', :as => 'edit_profile'
+  post '/update_my_profile', :to => 'profile#update', :as => 'update_profile'
+  get 'profile/:id/favorite_posts', :to => 'profile#favorite_posts', :as => 'favorite_posts'
+  get 'profile/:id/favorite_events', :to => 'profile#favorite_events', :as => 'favorite_events'
+
+
   post '/follow_user/:id', to: 'profile#follow_user', as: 'follow_user'
   post '/unfollow_user/:id', to: 'profile#unfollow_user', as: 'unfollow_user'
 

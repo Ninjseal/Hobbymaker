@@ -1,0 +1,30 @@
+<%= content_tag(:div, class: "trending-events") do %>
+  <% if @trending_events.present? %>
+    <%= content_tag(:h3, "Most Popular Events", class: "text-center themed-text") %>
+    <%= content_tag(:div, class: "row") do %>
+      <%= render(partial: "event", collection: @trending_events) %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= content_tag(:div, class: "home-container") do %>
+  <% if @notifications.present? %>
+    <%= content_tag(:h3, "New Updates", class: "text-center themed-text") %>
+    <% @notifications.each do |notification| %>
+      <% if notification.type == "EventNotification" %>
+        <%= render(partial: "event_notification", locals: { event: notification.params[:event] }) %>
+      <% elsif notification.type == "PostNotification" %>
+        <%= render(partial: "post_notification", locals: { post: notification.params[:post] }) %>
+      <% elsif notification.type == "PollNotification" %>
+        <%= render(partial: "poll_notification", locals: { poll: notification.params[:poll] }) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+<%= content_tag(:div, class: "recent-events") do %>
+  <% if @newest_events.present? %>
+    <%= content_tag(:h3, "Recently Published Events", class: "text-center themed-text") %>
+    <%= content_tag(:div, class: "row") do %>
+      <%= render(partial: "event", collection: @newest_events) %>
+    <% end %>
+  <% end %>
+<% end %>

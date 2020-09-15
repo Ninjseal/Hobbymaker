@@ -1,0 +1,31 @@
+<%= content_tag(:div, class: "profile-div row box-layout") do %>
+  <%= content_tag(:div, class: "profile-page-picture-div d-block", style: "margin-left: 42%; margin-right: 42%; width: 16%;") do %>
+    <%= image_tag(@user.profile_photo.url, class: "profile-page-picture") %>
+  <% end %>
+
+  <%= content_tag(:div, class: "profile-details") do %>
+    <%= content_tag(:div, class: "profile-header-div d-block") do %>
+      <%= content_tag(:h3, @user.name, class: "font-weight-bold d-inline-block")%>
+    <% end %>
+    <%= content_tag(:div, class: "profile-details-div") do %>
+      <% if profile_details(@user) %>
+        <%= content_tag(:p, profile_details(@user), class: "d-block")%>
+      <% end %>
+      <%= content_tag(:p, @user.about, class: "d-block text-justify")%>
+      <br/>
+      <%= link_to( "Favorite Posts", favorite_posts_path(@user), class: "books-link")%>
+      <br/>
+      <%= link_to( "Favorite Events", favorite_events_path(@user), class: "books-link")%>
+    <% end %>
+    <% if @user != current_user %>
+      <% if @user.is_followed_by?(current_user) %>
+        <%= button_tag('Unfollow', type: 'button', class: "btn btn-unfollow btn-sm btn-outline-danger", "data-id": @user.id) %>
+      <% else %>
+        <%= button_tag('Follow', type: 'button', class: "btn btn-follow btn-sm btn-outline-primary", "data-id": @user.id) %>
+      <% end %>
+      <%= link_to(report_user_path(@user.id), class: "report-user") do %>
+        <%= ion_icon 'ios-flag', text: content_tag(:span, "Report") %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

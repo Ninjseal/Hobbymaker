@@ -20,6 +20,8 @@ gem 'trix'
 gem 'chartkick'
 gem 'ransack'
 gem 'noticed'
+gem 'kaminari'
+
 
 # Omniauth - Google API
 gem 'omniauth-google-oauth2'

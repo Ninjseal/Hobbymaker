@@ -53,7 +53,7 @@
     <% end -%>
     <%= content_tag(:span, class: "ml-1 ml-lg-3 navbar-text") do %>
       <% if user_signed_in? %>
-        <%= link_to edit_user_registration_path, class: "navbar-link" do %>
+        <%= link_to user_profile_url(current_user), class: "navbar-link" do %>
           <%= content_tag(:strong, "#{current_user.name}", class: "faded-white align-middle") %>
           <%= image_tag current_user.profile_photo.url, class: 'rounded-circle', style: 'width:35px; height:35px;'%>
         <% end -%>

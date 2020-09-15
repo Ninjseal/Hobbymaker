@@ -1,0 +1,6 @@
+<%= content_tag(:div, class: "favorite-posts") do %>
+  <%= content_tag(:h3, "#{@user.name}'s Favorite Posts", class: "text-center themed-text mb-2") %>
+  <%= content_tag(:div, class: "row mt-2") do %>
+    <%= render(partial: "post", collection: @user.favorite_posts) %>
+  <% end %>
+<% end %>
