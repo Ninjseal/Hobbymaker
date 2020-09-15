@@ -1,3 +1,427 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.home-container {
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.event-item {
+  width: 100%;
+  min-height: 300px;
+  background-color: inherit;
+  border: none;
+  border-radius: inherit;
+}
+@media screen and (max-width: 986px) {
+  .event-item {
+    width: 30% !important;
+    margin: 1.5% !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .event-item {
+    width: 45.5% !important;
+    margin-bottom: 10px !important;
+  }
+}
+
+.btn-like-event {
+  top: 45%;
+  position: absolute;
+  right: 5%;
+  z-index: 9;
+}
+
+.btn-like-event i {
+  z-index: 0;
+  background: white;
+  padding: 7px 8px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding-top: 8px;
+  display: inline;
+  width: auto;
+  height: auto;
+  vertical-align: baseline;
+  margin-top: 0;
+  text-decoration: inherit;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+.btn-like-event i:hover {
+  cursor: pointer;
+}
+.btn-like-event i::before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+.btn-like-event i.favorited {
+  color: red !important;
+  -webkit-animation: big-pulse 0.4s;
+  animation: big-pulse 0.4s;
+  animation-timing-function: ease-in;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.event-item .thumb {
+  height: 160px !important;
+  min-height: 160px !important;
+  opacity: 1;
+  overflow: hidden;
+  background: #f5f5f5;
+  background-size: cover;
+  position: relative;
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  transition: all .1s ease-out;
+}
+
+.card-img-top {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 150px;
+  transition: all .1s ease-in-out;
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+  vertical-align: middle;
+  border: 0;
+}
+
+.thumb::after {
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,.05) 100%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  content: "";
+}
+
+.event-item .meta {
+  color: #fff !important;
+  padding: 20px 10px 10px;
+  line-height: 20px;
+  float: left;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px inset rgba(0, 0, 0, 0.1);
+  height: 140px;
+  overflow: hidden;
+  bottom: 0;
+  border: none;
+  text-align: left;
+}
+
+.meta-left {
+  float: left;
+  width: 20%;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+@media screen and (max-width: 986px) {
+  .meta-left {
+    width: 18%;
+  }
+}
+
+.up-month {
+  color: #FD3B08;
+  text-transform: uppercase;
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.up-day {
+  color: #555;
+  display: block;
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.meta-right {
+  float: left;
+  width: 80%;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+@media screen and (max-width: 986px) {
+  .meta-right {
+    width: 82%;
+    padding-left: 20px;
+  }
+}
+
+.event-item .date {
+  overflow-wrap: break-word;
+  font-family: 'Open Sans', sans-serif;
+  color: #d1410c;
+  font-weight: 600;
+  font-size: .9rem;
+  line-height: 1.25rem;
+  padding-bottom: 4px;
+}
+
+.event-item .title {
+  overflow-wrap: break-word;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: #2e363f;
+  width: 100%;
+  display: block;
+  line-height: 20px;
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+  float: left;
+}
+
+.event-item .title a,
+.event-item .title a h3 {
+  font-family: 'Open Sans', sans-serif;
+  white-space: normal;
+  color: #2e363f;
+  height: 70px;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 0;
+  line-height: 20px;
+  text-transform: none;
+  margin: 0;
+  display: inline;
+  font-weight: 600;
+}
+
+.event-item .location {
+  overflow-wrap: break-word;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  float: left;
+  width: 100%;
+  color: #999;
+  line-height: 1.5;
+  margin: 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes big-pulse {
+    0% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+      font-size: 1.5rem;
+      color: red;
+    }
+    50% {
+      -webkit-transform: scale3d(1.05, 1.05, 1.05);
+      transform: scale3d(1.05, 1.05, 1.05);
+      font-size: 1.75rem;
+    }
+    100% {
+      -webkit-transform: scale3d(1, 1, 1);
+      transform: scale3d(1, 1, 1);
+      font-size: 1.5rem;
+      color: red;
+    }
+}
+
+.profile-photo-notification {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+  object-fit: fill;
+}
+
+.row-home {
+
+}
+
+.post-notification {
+  border: 2px dashed #ED755A;
+  width: 300px;
+  margin: 0;
+  padding: 5px;
+  margin-bottom: 30px;
+  margin-top:30px;
+}
+
+.event-notification {
+  border: 2px dashed #ED755A;
+  width: 300px;
+  margin: 0;
+  padding: 5px;
+  margin-bottom: 30px;
+  margin-top:30px;
+}
+
+.post-thumbnail-notification {
+  height:150px;
+  width:auto;
+}
+
+.event-thumbnail-notification{
+  height:150px;
+  width:auto;
+}
+
+.update-link {
+  text-decoration: none;
+  border: none;
+  outline: none;
+  color: #ED755A !important;
+  font-weight: bold;
+}
+
+.update-link:hover {
+  text-decoration: none;
+  border: none;
+  outline: none;
+  color: #D6D0C4 !important;
+  font-weight: bold;
+}
+
+.post-item {
+  width: 100%;
+  min-height: 300px;
+  background-color: inherit;
+  border: none;
+  border-radius: inherit;
+}
+
+.post-item .post-meta {
+  padding: .8rem 0 1.25rem 0;
+}
+
+.post-item .post-title {
+  font-size: 22px;
+  color: #ED755A;
+}
+
+.post-item .post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-item .post-author {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+}
+.post-item .post-author a {
+  color: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.post-item .post-author a:hover {
+  text-decoration: underline;
+}
+
+.post-item .post-date {
+}
+
+.post-item .post-img {
+  border-radius: inherit;
+  height: 180px;
+  display:block;
+}
+@media screen and (max-width: 767px) {
+  .post-item .post-img {
+    height: 200px;
+  }
+}
+
+.btn-like-post {
+  z-index: 9;
+  top: 52%;
+  position: absolute;
+  right: 5%;
+  z-index: 9;
+}
+@media screen and (max-width: 767px) {
+  .btn-like-post {
+    top: 58%;
+  }
+}
+.btn-like-post i {
+  z-index: 0;
+  background: white;
+  padding: 7px 8px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  padding-top: 8px;
+  display: inline;
+  width: auto;
+  height: auto;
+  vertical-align: baseline;
+  margin-top: 0;
+  text-decoration: inherit;
+  font-size: 1.5rem;
+  line-height: 2;
+}
+.btn-like-post i:hover {
+  cursor: pointer;
+}
+.btn-like-post i::before {
+  text-decoration: inherit;
+  display: inline-block;
+  speak: none;
+}
+.btn-like-post i.favorited {
+  color: red !important;
+  -webkit-animation: big-pulse 0.4s;
+  animation: big-pulse 0.4s;
+  animation-timing-function: ease-in;
+  -webkit-animation-timing-function: ease-out;
+}
+
+.poll-notification {
+  margin: 40px 0;
+}
+
+.poll-notification .user-photo {
+  color: inherit;
+  text-decoration: none;
+}
+
+.poll-notification .user-name {
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 10px;
+}
+
+
+.poll-notification .user-name a {
+  color: inherit;
+  text-decoration: none;
+}
+.poll-notification .user-name a:hover {
+  text-decoration: underline;
+}
+
+.poll-notification .poll-date {
+  float: right;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 986px) {
+  .event-item {
+    width: 100% !important;
+  }
+  .post-item {
+    width: 100% !important;
+  }
+}

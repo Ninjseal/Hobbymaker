@@ -1,0 +1,13 @@
+<%= content_tag(:div, class: "poll-notification") do %>
+  <%= link_to(user_profile_url(poll.owner), target: "_blank", class: "pull-left user-photo") do %>
+    <%= image_tag(poll.owner.profile_photo.url, class: "rounded-circle z-depth-2", style: "width: 72px; height: 72px;") %>
+  <% end %>
+  <%= content_tag(:div, class: "user-name", style: "display:inline;") do %>
+    <%= link_to(poll.owner.name, user_profile_url(poll.owner), target: "_blank") %>
+    <%= content_tag(:span, "just published a new") %>
+    <%= link_to("Poll", poll_url(poll), target: "_blank") %>
+  <% end %>
+  <%= content_tag(:div, class: "poll-date") do %>
+    <%= content_tag(:span, format_post_date(poll.created_at)) %>
+  <% end %>
+<% end %>
