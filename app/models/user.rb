@@ -83,6 +83,10 @@ class User < ApplicationRecord
     PollVote.exists?(user_id: self.id, poll_id: poll.id)
   end
 
+  def is_subscribed?(interest)
+    self.interests.pluck(:id).include?(interest.id)
+  end
+
   private
 
     def assign_default_role

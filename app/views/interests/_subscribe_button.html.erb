@@ -1,0 +1,5 @@
+<% if btn_type == "subscribe" %>
+  <%= button_tag("Subscribe", type: 'button', class: "btn btn-subscribe btn-outline-success", "data-id": interest_id) %>
+<% elsif btn_type == "unsubscribe" %>
+  <%= button_tag("Unsubscribe", type: 'button', class: "btn btn-unsubscribe btn-outline-danger", "data-id": interest_id) %>
+<% end %>

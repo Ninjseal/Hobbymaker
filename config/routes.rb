@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     post :withdraw, on: :member
   end
 
+  resources :interests, only: :show do
+    post :subscribe, on: :member
+    post :unsubscribe, on: :member
+  end
+
   resources :polls do
     post :vote, on: :member
   end

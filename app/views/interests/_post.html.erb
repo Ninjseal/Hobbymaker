@@ -1,0 +1,26 @@
+<%= content_tag(:div, class: "card mt-4 box-shadow post-item") do %>
+  <%= link_to(post_path(post), target: "_blank") do %>
+    <%= image_tag(post.thumbnail.url, class: "card-img-top post-img") %>
+  <% end %>
+  <%= content_tag(:div, class: "card-body post-meta") do %>
+    <%= content_tag(:h3, class: "card-text post-title") do %>
+       <%= link_to(post.title, post_path(post)) %>
+    <% end %>
+    <%= content_tag(:div, class: "d-flex justify-content-between align-items-center") do %>
+      <%= content_tag(:span, class: "post-author") do %>
+        <%= 'By' %>
+        <%= link_to(post.creator.name, user_profile_url(post.creator), target: "_blank") %>
+      <% end %>
+      <%= content_tag(:small, format_post_date(post.created_at), class: "text-muted post-date") %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "btn-like-post") do %>
+    <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
+      <% if is_favored?(post) %>
+        <%= icon("fas", "heart", class: "icon-heart favorited", title: 'Unfavorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
+      <% else %>
+        <%= icon("far", "heart", class: "icon-heart", title: 'Favorite post', data: { id: post.id, toggle: "tooltip", placement: "top" }) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

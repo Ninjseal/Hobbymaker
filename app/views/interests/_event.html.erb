@@ -1,0 +1,29 @@
+<%= content_tag(:div, class: "card mt-4 box-shadow event-item") do %>
+  <%= link_to(event_path(event), target: "_blank", class: "thumb") do %>
+    <%= image_tag(event.thumbnail.url, class: "card-img-top event-img") %>
+  <% end %>
+  <%= content_tag(:div, class: "card-body event-meta") do %>
+    <%= content_tag(:div, class: "meta-left") do %>
+      <%= content_tag(:span, get_month(event.start_date), class: "up-month") %>
+      <%= content_tag(:span, get_day(event), class: "up-day") %>
+    <% end %>
+    <%= content_tag(:div, class: "meta-right") do %>
+      <%= content_tag(:div, format_date(event.start_date), class: "date") %>
+      <%= content_tag(:div, class: "title") do %>
+        <%= link_to(event_path(event), title: event.name, target: "_blank") do %>
+          <%= content_tag(:h3, event.name) %>
+        <% end %>
+      <% end %>
+      <%= content_tag(:span, get_location(event), class: "location") %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "btn-like-event") do %>
+    <%= content_tag(:div, class: "float-right", style: "position: relative;") do %>
+      <% if is_favored?(event) %>
+        <%= icon("fas", "heart", class: "icon-heart favorited", "data-id": event.id, title: 'Unfavorite event', data: { toggle: "tooltip", placement: "top" }) %>
+      <% else %>
+        <%= icon("far", "heart", class: "icon-heart", "data-id": event.id, title: 'Favorite event', data: { toggle: "tooltip", placement: "top" }) %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

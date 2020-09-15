@@ -1,0 +1,41 @@
+<%= content_tag(:div, class: "show-interest-wrapper") do %>
+  <%= content_tag(:div, class: "interest-header") do %>
+    <%= content_tag(:div, class: "row") do %>
+      <%= content_tag(:div, class: "interest-title") do %>
+        <%= content_tag(:h2, "Interest: ", style: "display: inline;") %>
+        <%= content_tag(:h2, @interest.name, class: "themed-text", style: "display: inline;") %>
+      <% end %>
+      <%= content_tag(:span) do %>
+        <% if user_is_subscribed?(@interest) %>
+          <%= button_tag('Unsubscribe', type: 'button', class: "btn btn-unsubscribe btn-sm btn-outline-danger", "data-id": @interest.id) %>
+        <% else %>
+          <%= button_tag('Subscribe', type: 'button', class: "btn btn-subscribe btn-sm btn-outline-success", "data-id": @interest.id) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "interest-body") do %>
+    <%= content_tag(:div, class: "row mt-2") do %>
+      <%= content_tag(:div, class: "col-6") do %>
+        <% unless @interest.posts.present? %>
+          <%= content_tag(:h4, "No Posts", class: "text-center") %>
+        <% else %>
+          <%= content_tag(:h4, "Posts", class: "text-center") %>
+          <%= content_tag(:div, class: "posts-list") do %>
+            <%= render(partial: "post", collection: @interest.posts) %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= content_tag(:div, class: "col-6") do %>
+        <% unless @interest.events.present? %>
+          <%= content_tag(:h4, "No Events", class: "text-center") %>
+        <% else %>
+          <%= content_tag(:h4, "Events", class: "text-center") %>
+          <%= content_tag(:div, class: "events-list") do %>
+            <%= render(partial: "event", collection: @interest.events) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

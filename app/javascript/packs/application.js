@@ -50,6 +50,8 @@ document.addEventListener('turbolinks:load', () => {
   $(".btn-unfollow").click(unfollow_user);
   $(".btn-withdraw").click(withdraw_event);
   $(".btn-participate").click(join_event);
+  $(".btn-subscribe").click(interest_subscribe);
+  $(".btn-unsubscribe").click(interest_unsubscribe);
   // New Event
   $("#event_interest_ids").select2({ theme: "bootstrap", placeholder: "Select Interests", allowClear: true });
   $("#event_organizer_ids").select2({ theme: "bootstrap", placeholder: "Select Organizers", allowClear: true });
@@ -67,6 +69,8 @@ document.addEventListener('turbolinks:load', () => {
   setTimeout(display_progress, 100); // Wait .1 s before showing progress
   $("input:checkbox[id^='poll_option_ids_']").click(toggle_required);
   $(".poll-vote-form").not(".is-multi").find("input:checkbox[id^='poll_option_ids_']").click(restrict_check);
+  // Show Interest
+
 });
 
 function restrict_check() {
@@ -266,6 +270,30 @@ function withdraw_event() {
       var id = $(data).attr("data-id");
       $(`button.btn-withdraw[data-id='${id}']`).replaceWith(data);
       $(`button.btn-participate[data-id='${id}']`).click(join_event);
+    }
+  });
+}
+
+function interest_subscribe() {
+  var id = parseInt($(this).attr("data-id"));
+  $.post({ url: `/interests/${id}/subscribe`,
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    success: function(data, status, xhr) {
+      var id = $(data).attr("data-id");
+      $(`button.btn-subscribe[data-id='${id}']`).replaceWith(data);
+      $(`button.btn-unsubscribe[data-id='${id}']`).click(interest_unsubscribe);
+    }
+  });
+}
+
+function interest_unsubscribe() {
+  var id = parseInt($(this).attr("data-id"));
+  $.post({ url: `/interests/${id}/unsubscribe`,
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    success: function(data, status, xhr) {
+      var id = $(data).attr("data-id");
+      $(`button.btn-unsubscribe[data-id='${id}']`).replaceWith(data);
+      $(`button.btn-subscribe[data-id='${id}']`).click(interest_subscribe);
     }
   });
 }
