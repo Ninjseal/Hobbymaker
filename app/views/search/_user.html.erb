@@ -1,0 +1,8 @@
+<%= content_tag(:div, class: "user-item") do %>
+  <%= link_to(user_profile_url(user), target: "_blank", class: "pull-left user-photo") do %>
+    <%= image_tag(user.profile_photo.url, class: "rounded-circle z-depth-2", style: "width: 72px; height: 72px;") %>
+  <% end %>
+  <%= content_tag(:div, class: "user-name", style: "display:inline;") do %>
+    <%= link_to(user.name, user_profile_url(user), target: "_blank") %>
+  <% end %>
+<% end %>

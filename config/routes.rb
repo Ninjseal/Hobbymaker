@@ -44,5 +44,7 @@ Rails.application.routes.draw do
   get '/admin/send-mail-report/:id', to: 'admin/reports#mail', as: 'mail'
   post '/admin/reports/:id/reject', to: 'admin/reports#reject', as: 'reject_report'
 
+  get '/search', :to => 'search#index', :as => 'search'
+
   root to: 'home#index'
 end

@@ -1,0 +1,36 @@
+<%= content_tag(:div, class: "search-index-wrapper") do %>
+  <%= content_tag(:header, class: "search-header") do %>
+    <%= content_tag(:h3, "Search", class: "themed-text") %>
+    <%= content_tag(:fieldset, class: "search-form") do %>
+      <%= form_tag(search_path, method: :get) do |f| %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= text_field(:q, :search_query, class: "form-control mr-sm-2", placeholder: "Search", 'aria-label': "Search", value: @search_string) %>
+        <% end %>
+        <%= content_tag(:div, class: "field") do %>
+          <%= radio_button_tag('search_type', 'post', @search_type == "post" ? true : false) %>
+          <%= label_tag(:search_type_post, 'Post') %>
+          <%= radio_button_tag('search_type', 'event', @search_type == "event" ? true : false) %>
+          <%= label_tag(:search_type_event, 'Event') %>
+          <%= radio_button_tag('search_type', 'user', @search_type == "user" ? true : false) %>
+          <%= label_tag(:search_type_user, 'User') %>
+        <% end %>
+        <%= content_tag(:div, class: "actions mt-1") do %>
+          <%= submit_tag "Search", class: "submit-button-lg" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%= content_tag(:div, class: "search-body") do %>
+    <%= content_tag(:div, class: "row justify-content-center") do %>
+      <%= content_tag(:div, class: "col-8") do %>
+        <% unless @records.present? %>
+          <%= content_tag(:h4, "Couldn\'t find anything", class: "text-center") %>
+        <% else %>
+          <%= content_tag(:div, class: "search-list") do %>
+            <%= render(partial: "#{@search_type}", collection: @records) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
