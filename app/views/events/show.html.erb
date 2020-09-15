@@ -44,6 +44,7 @@
               <% end -%>
             <% end %>
           <% end %>
+          <%= render(partial: "attendees", locals: { participants: @event.participants }) %>
         <% end %>
         <%= content_tag(:div, class: "event-info") do %>
           <%= content_tag(:div, class: "event-date") do %>

@@ -1,0 +1,17 @@
+<%= content_tag(:section, class: "attendees-wrapper") do %>
+  <%= content_tag(:div, class: "attendees-title") do %>
+    <%= content_tag(:h3, "Attendees (#{participants.count})") %>
+  <% end %>
+  <%= content_tag(:div, class: "row text-center") do %>
+    <% participants.each do |participant| %>
+      <%= content_tag(:div, class: "col-md-3 col-sm-4 mb-3") do %>
+        <%= link_to(user_profile_url(participant), target: "_blank") do %>
+          <%= image_tag(participant.profile_photo.url, class: "rounded-circle z-depth-2", style: "width: 72px; height: 72px;") %>
+        <% end %>
+        <%= content_tag(:div, style: "display:block;") do %>
+          <%= link_to(participant.name, user_profile_url(participant), target: "_blank") %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

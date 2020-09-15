@@ -918,3 +918,22 @@ ul {
 .report-event a:hover {
   text-decoration: underline;
 }
+
+.attendees-wrapper {
+  background-color: #fff;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+.attendees-wrapper a {
+  color: inherit;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.attendees-title {
+  padding: 15px 10px;
+}
+.attendees-title h3 {
+  font-size: 21px;
+}
