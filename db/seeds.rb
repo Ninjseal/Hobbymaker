@@ -75,15 +75,30 @@ post1 = Post.create(title: 'How Music Can Ease Your Pain', content: 'Losing your
 post1.interests << i_music
 post2 = Post.create(title: 'Playing Video Games Is Good For Your Brain', content: 'Whether playing video games has negative effects is something that has been debated for 30 years, in much the same way that rock and roll, television, and even the novel faced much the same criticisms in their time.Purported negative effects such as addiction, increased aggression, and various health consequences such as obesity and repetitive strain injuries tend to get far more media coverage than the positives.<br/> I know from my own research examining both sides that my papers on video game addiction receive far more publicity than my research into the social benefits of, for example, playing online role-playing games.However there is now a wealth of research which shows that video games can be put to educational and therapeutic uses, as well as many studies which reveal how playing video games can improve reaction times and hand-eye co-ordination. For example, research has shown that spatial visualisation ability, such as mentally rotating and manipulating two- and three-dimensional objects, improves with video game playing.', created_by: u_10.id)
 post2.interests << i_games
+post2.thumbnail = File.open(Rails.root.join('app', 'assets', 'images', 'video-games.jpg'))
+post2.save
+
 post3 = Post.create(title: 'Be Better at Parties', content: 'Whether you love them or hate them, parties are important. They are where people meet future business and romantic partners and friends, where small talk becomes the stuff of life. Who among us, save the most self-sufficient and confident partygoer (and who is that insufferable person, anyway?), wouldn’t like to party better? This guide will teach you how to make seamless, beautiful small talk that leads to important conversations and connections. It will ease you into mingling effortlessly, and it will even demonstrate the right way to leave (without ruining your life). Go forth and party.', created_by: u_7.id)
 post3.interests << i_party
+post3.thumbnail = File.open(Rails.root.join('app', 'assets', 'images', 'party-photo.jpg'))
+post3.save
+
 post4 = Post.create(title: 'How to Eat Healthy', content: 'It’s a natural desire to want to eat healthy—to nourish your body with the nutrition it needs to feel good. But then actually figuring out how to eat healthy, or healthier, isn’t always so clear or intuitive. In fact, it’s really freaking confusing sometimes.First off, there are a lot of opinions and information (and misinformation) out there, so it’s hard to know what to listen to. And diet culture has skewed a lot of our thinking about what healthy eating advice should sound like—often pushing restriction and prescriptive rules that don’t take into account the personal, cultural, and socioeconomic factors that influence what a healthy diet looks like for any one individual. Connected to that is the assumption, largely fueled by fatphobia, that healthy eating is synonymous with eating to lose weight. <br/> In other words: If you’re a little lost on how to eat healthy, it’s not you. So we looked to 11 R.D.s from a variety of backgrounds, personally and professionally, for their best tips on healthy eating that are flexible and empowering, instead of rigid and punishing. They shared practical pieces of advice that can make it easier for people to enrich and diversify the nutrition in their diets and make their own delicious, satisfying meals—as well as, just as important, cultivate a more peaceful and enjoyable relationship with food and eating. Take the tips that speak to you, and add them to your very own one-of-a-kind healthy eating toolbox.', created_by: u_6.id)
 post4.interests << i_food
+post4.thumbnail = File.open(Rails.root.join('app', 'assets', 'images', 'healthy-food.jpg'))
+post4.save
+
 post5 = Post.create(title: 'Why Do I Make Art?', content: 'I like expressing emotions—to have others feel what it is I’m feeling when I’m photographing people.<br/>Empathy is essential to portraiture. I’ve done landscapes, and I think they can be very poetic and emotional, but it’s different from the directness of photographing a person. I think photographing people is, for me, the best way to show somebody something about themselves—either the person I photograph or the person looking—that maybe they didn’t already know. Maybe it’s presumptuous, but that’s the desire. I feel like I’m attending to people when I’m photographing them, and I think I understand people better because I’ve been looking at them intensely for 40-some years.', created_by: u.id)
 post5.interests << i_art
+post5.thumbnail = File.open(Rails.root.join('app', 'assets', 'images', 'art-photo.png'))
+post5.save
+
 post6 = Post.create(title: 'The five types of film time', content: '<strong>When studying film, there is an important distinction to be made between two dimensions of ‘story time’: the time we experience as the viewers of the film (the 2 hours we’re in a cinema, or the 10 minutes in front of a laptop, the 30 minute TV programme etc.) and the time the story itself covers (which might cover a character’s lifetime, the history of a people or country, or told in ‘real time’ - how long the story itself takes to happen).<strong><br/> Film theorist Christian Metz called it the difference between ‘the time of the thing being told, and the time of the telling.’ A focus on time in film creates opportunities for rich language learning - time in language translates into ‘tense’ and this is how we can introduce and help students learn about the past, present, and future tenses. <br/>There is a typology of the different kinds of film time, attributed to Sarah Kozloff that finds five different relationships between film time, and our time:
 <br/>1. Scene – where story time is the same as real time – e.g. in soap operas, which feel like they’re playing out in real time – or a film like Victoria, which was shot and performed ‘live’ in a single take, between 5am and 7.30am early one morning in Berlin. <br/>2. Stretch – where story time stretches out real time, like in adventure film sequences of countdowns to a bomb going off – 30 seconds of countdown seems to last 2 minutes, because there’s lots of cross-cutting – to the clock, to the action, to a close-up.<br/>3. Ellipsis – where the story cuts out real time – woman gets into her car outside a building, there’s one shot of the journey, then cut to her arriving at a house. The actual journey might take 10 minutes in real time, but in the film it lasts 20 seconds.<br/>4. Summary – where real time is summarised by clock hands winding forward, or newspaper pages spinning, or the example in Notting Hill, where Hugh Grant walks up Portobello Road through winter rain, spring, summer, and autumn.<br/>5. Pause – which is in some ways the hardest type of film time to spot. Sometimes in a film, time is ‘paused’ while a voice-over updates us on the action; sometimes the opening credits show us the world of the film, but the time of story hasn’t started yet.', created_by: u_12.id)
 post6.interests << i_film
+post6.thumbnail = File.open(Rails.root.join('app', 'assets', 'images', 'cinema.jpg'))
+post6.save
+
 post7 = Post.create(title: 'A brief history of invisibility on screen', content: 'What would you do if you could be invisible? Would this newfound power bring out the best in you, instilling you with the courage to discreetly sabotage the efforts of evildoers? Or would the ability to slip in and out of rooms unnoticed tap into darker impulses?<br/>This alluring fantasy has long been fodder for filmmakers, many of whom have taken cues from the eponymous character in H.G. Wells’ 1897 novel, <p style="text-decoration: underline;">“The Invisible Man.”</p><br/>First adapted to the screen in 1933, the invisible man (and his descendents) appeared in six films from 1933 to 1951. Now, he’ll be making his latest screen (dis)appearance in a film directed by Leigh Whannell. This iteration takes a horror-movie tack: Its protagonist, played by Elisabeth Moss, is harassed by an ex who has faked his own death. But beyond “The Invisible Man” franchise, the concept of invisibility has inspired a raft of movies over the decades.<br/>As a film professor who studies adaptations and series, I’m most interested in the versatility of these invisible characters. They can star in cautionary tales or embody underdog heroes; they can act as vessels for social critique or vehicles for masochistic power fantasies.', created_by: u_3.id)
 post7.interests << i_film
 
@@ -113,6 +128,9 @@ e2.organizers << u_10
 
 e3.organizers << u
 
+e2.thumbnail = File.open(Rails.root.join('app', 'assets', 'images', 'mortal-kombat.jpg'))
+e2.save
+
 # Favorites
 f1 = Favorite.create(user_id: u_8.id, favorite_item_type: "Event", favorite_item_id: e1.id)
 f2 = Favorite.create(user_id: u.id, favorite_item_type: "Post", favorite_item_id: post5.id)
@@ -140,10 +158,10 @@ v4 = PollVote.create(user_id: u_5.id, poll_option_id: op6.id, poll_id: p1.id)
 v5 = PollVote.create(user_id: u_9.id, poll_option_id: op6.id, poll_id: p1.id)
 
 p2 = Poll.create(user_id: u_10.id, question: 'What was the best film in 2016?', allow_multiple_answers: false)
-op1 = PollOption.create(poll_id: p1.id, answer: 'Ghostbusters')
-op2 = PollOption.create(poll_id: p1.id, answer: 'Deadpool')
-op3 = PollOption.create(poll_id: p1.id, answer: 'Moana')
-op4 = PollOption.create(poll_id: p1.id, answer: 'Zootopia')
+op1 = PollOption.create(poll_id: p2.id, answer: 'Ghostbusters')
+op2 = PollOption.create(poll_id: p2.id, answer: 'Deadpool')
+op3 = PollOption.create(poll_id: p2.id, answer: 'Moana')
+op4 = PollOption.create(poll_id: p2.id, answer: 'Zootopia')
 v1 = PollVote.create(user_id: u.id, poll_option_id: op4.id, poll_id: p2.id)
 v2 = PollVote.create(user_id: u_admin.id, poll_option_id: op2.id, poll_id: p2.id)
 v3 = PollVote.create(user_id: u_10.id, poll_option_id: op2.id, poll_id: p2.id)
@@ -152,8 +170,8 @@ v5 = PollVote.create(user_id: u_11.id, poll_option_id: op4.id, poll_id: p2.id)
 v6 = PollVote.create(user_id: u_2.id, poll_option_id: op3.id, poll_id: p2.id)
 
 p3 = Poll.create(user_id: u_4.id, question: 'I would rather listen to Ariana Grande than Taylor Swift, Katy Perry or Selena Gomez.', allow_multiple_answers: false)
-op1 = PollOption.create(poll_id: p1.id, answer: 'Agree')
-op2 = PollOption.create(poll_id: p1.id, answer: 'Disagree')
+op1 = PollOption.create(poll_id: p3.id, answer: 'Agree')
+op2 = PollOption.create(poll_id: p3.id, answer: 'Disagree')
 v1 = PollVote.create(user_id: u.id, poll_option_id: op2.id, poll_id: p3.id)
 v2 = PollVote.create(user_id: u_admin.id, poll_option_id: op2.id, poll_id: p3.id)
 v3 = PollVote.create(user_id: u_7.id, poll_option_id: op2.id, poll_id: p3.id)
